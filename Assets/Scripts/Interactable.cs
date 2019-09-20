@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    public string[] text;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,10 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         
+    }
+
+   public void DisplayText(BasicDialogue source)
+    {
+        source.ShowText(text, 0);
     }
 }

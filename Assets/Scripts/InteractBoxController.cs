@@ -27,11 +27,11 @@ public class InteractBoxController : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (canInteract && other.GetComponent<Interactable>())
+        if (canInteract && GetComponentInParent<PlayerController>().canControl && other.GetComponent<Interactable>())
         {
             if (Input.GetAxis("Interact") > 0.5)
             {
-                Debug.Log("High");
+                other.GetComponent<Interactable>().DisplayText(GetComponentInParent<BasicDialogue>());
             }
             canInteract = false;
         }
