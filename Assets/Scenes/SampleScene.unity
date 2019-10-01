@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd90ad68ffe1a59468ece47e29450c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 551993926}
   maxSpeed: 10
   takeOffSpeed: 8
   maxJumpHeight: 28
@@ -438,14 +438,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894898242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.10568199, z: -0, w: 0.9944}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 1582262553}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 12.133, z: 0}
 --- !u!50 &894898246
 Rigidbody2D:
   serializedVersion: 4
@@ -518,6 +518,7 @@ GameObject:
   - component: {fileID: 1582262554}
   - component: {fileID: 1582262555}
   - component: {fileID: 1582262556}
+  - component: {fileID: 1582262557}
   m_Layer: 0
   m_Name: InteractBox
   m_TagString: Untagged
@@ -598,6 +599,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0303d37d5d7238f4b84c7560d008b368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1582262557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582262552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd90ad68ffe1a59468ece47e29450c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  maxSpeed: 7
+  takeOffSpeed: 7
+  maxJumpHeight: 10
+  gravity: 0.01
+  canControl: 1
 --- !u!1001 &5618496293747283694
 PrefabInstance:
   m_ObjectHideFlags: 0
