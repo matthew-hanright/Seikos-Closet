@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\InteractBoxController.cs" />
+    <Compile Include="Assets\Scripts\PlatformMove.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

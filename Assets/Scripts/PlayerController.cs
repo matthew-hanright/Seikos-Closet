@@ -89,7 +89,10 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                move.y -= gravity;
+                if(move.y > -maxJumpHeight / 1.2f)
+                {
+                    move.y -= gravity;
+                }
             }
 
             //Apply movement
@@ -103,16 +106,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Solid")
+        if(collision.gameObject.tag == "Solid" && collision.gameObject.transform.position.y < transform.position.y)
         {
             groundingCollisions++;
             isGrounded = true;
+        }
+        else if (collision.gameObject.tag == "Solid" && collision.gameObject.transform.position.y > transform.position.y)
+        {
+            isJumping = false;
+            move.y = 0;
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, 0.0f);
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Solid")
+        if (collision.gameObject.tag == "Solid" && groundingCollisions > 0)
         {
             groundingCollisions--;
             if(groundingCollisions == 0)
