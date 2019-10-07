@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //Vertical Movement
-            if (isGrounded)
+            if (isGrounded && move.y < 1.0f)
             {
                 if (Input.GetAxis("Vertical") > 0)
                 {
@@ -131,4 +131,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Solid")
+        {
+            if(collision.gameObject.transform.position.y > transform.position.y)
+            {
+                isJumping = false;
+                move.y -= gravity;
+            }
+            else if(collision.gameObject.transform.position.y < transform.position.y)
+            {
+                move.y += gravity;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Solid")
+        {
+
+        }
+    }
 }
