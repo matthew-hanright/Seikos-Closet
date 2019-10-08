@@ -14,7 +14,7 @@ public class InteractBoxController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Interact") <= 0.1)
+        if (!canInteract && Input.GetAxis("Interact") <= 0.1 && GetComponentInParent<PlayerController>().canControl)
         {
             canInteract = true;
         }
@@ -32,8 +32,8 @@ public class InteractBoxController : MonoBehaviour
             if (Input.GetAxis("Interact") > 0.5)
             {
                 other.GetComponent<Interactable>().DisplayText(GetComponentInParent<BasicDialogue>());
+                canInteract = false;
             }
-            canInteract = false;
         }
     }
 
