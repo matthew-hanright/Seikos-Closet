@@ -30,11 +30,15 @@ public class CameraController : MonoBehaviour
         //Player moves too far to the sides
         if(Mathf.Round(player.transform.position.x) < Mathf.Round(transform.position.x - XBounds))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2((player.transform.position.x - transform.position.x) / XDivisor, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(
+                (player.transform.position.x - transform.position.x) / XDivisor, 
+                GetComponent<Rigidbody2D>().velocity.y);
         }
         else if(Mathf.Round(player.transform.position.x) > Mathf.Round(transform.position.x + XBounds))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-(transform.position.x - player.transform.position.x) / XDivisor, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(
+                -(transform.position.x - player.transform.position.x) / XDivisor, 
+                GetComponent<Rigidbody2D>().velocity.y);
         }
         else if(Mathf.Abs(player.transform.position.x - transform.position.x) < radius)
         {
@@ -44,11 +48,17 @@ public class CameraController : MonoBehaviour
         //Player moves too far vertically
         if(Mathf.Round(player.transform.position.y) < Mathf.Round(transform.position.y - YMin))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -Mathf.Pow(((transform.position.y - player.transform.position.y) / (YDivisor * 1.7f)), 2));
+            GetComponent<Rigidbody2D>().velocity = new Vector2(
+                GetComponent<Rigidbody2D>().velocity.x, 
+                -Mathf.Pow(((transform.position.y - player.transform.position.y) / (YDivisor * 1.7f)), 
+                2));
         }
         else if(Mathf.Round(player.transform.position.y) > Mathf.Round(transform.position.y + YMax))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, Mathf.Pow(((player.transform.position.y - transform.position.y) / YDivisor), 2));
+            GetComponent<Rigidbody2D>().velocity = new Vector2(
+                GetComponent<Rigidbody2D>().velocity.x, 
+                Mathf.Pow(((player.transform.position.y - transform.position.y) / YDivisor), 
+                2));
         }
         else if(player.transform.position.y - transform.position.y < radius && player.transform.position.y > transform.position.y)
         {
