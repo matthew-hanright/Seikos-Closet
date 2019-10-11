@@ -5,71 +5,74 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
-    private bool playerContained = true;
-
+    private float XBounds = 3f;
+    private float YMin = 3f;
+    private float YMax = 0.5f;
+    private float XDivisor = 0.5f;
+    private float YDivisor = 1.5f;
+    private float radius = 1;
+    private float downRadius = 4;
+    private float YOffset;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void FixedUpdate()
     {
-
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        //Player moves too far to the sides
+        if(Mathf.Round(player.transform.position.x) < Mathf.Round(transform.position.x - XBounds))
         {
-            playerContained = true;
+            GetComponent<Rigidbody2D>().velocity = new Vector2((player.transform.position.x - transform.position.x) / XDivisor, GetComponent<Rigidbody2D>().velocity.y);
         }
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        else if(Mathf.Round(player.transform.position.x) > Mathf.Round(transform.position.x + XBounds))
         {
-            print("Player left");
-            playerContained = false;
-            while (!playerContained)
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-(transform.position.x - player.transform.position.x) / XDivisor, GetComponent<Rigidbody2D>().velocity.y);
+        }
+        else if(Mathf.Abs(player.transform.position.x - transform.position.x) < radius)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
+        }
+
+        //Player moves too far vertically
+        if(Mathf.Round(player.transform.position.y) < Mathf.Round(transform.position.y - YMin))
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -Mathf.Pow(((transform.position.y - player.transform.position.y) / (YDivisor * 1.7f)), 2));
+        }
+        else if(Mathf.Round(player.transform.position.y) > Mathf.Round(transform.position.y + YMax))
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, Mathf.Pow(((player.transform.position.y - transform.position.y) / YDivisor), 2));
+        }
+        else if(player.transform.position.y - transform.position.y < radius && player.transform.position.y > transform.position.y)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
+            if(YOffset == float.NaN)
             {
-                if (player.transform.position.x < transform.position.x) //Out on left
-                {
-                    if (!Physics2D.OverlapPoint(new Vector2(transform.position.x - 1, transform.position.y)))
-                    {
-                        transform.position = new Vector2(transform.position.x - 1, transform.position.y);
-                    }
-                }
-                else if (player.transform.position.x > transform.position.x) //Out on right
-                {
-                    if (!Physics2D.OverlapPoint(new Vector2(transform.position.x + 1, transform.position.y)))
-                    {
-                        transform.position = new Vector2(transform.position.x + 1, transform.position.y);
-                    }
-                }
-                if (player.transform.position.y < transform.position.y) //Out down
-                {
-                    if (!Physics2D.OverlapPoint(new Vector2(transform.position.x, transform.position.y - 1)))
-                    {
-                        transform.position = new Vector2(transform.position.x, transform.position.y - 1);
-                    }
-                }
-                else if (player.transform.position.y > transform.position.y)
-                {
-                    if (!Physics2D.OverlapPoint(new Vector2(transform.position.x, transform.position.y + 1)))
-                    {
-                        transform.position = new Vector2(transform.position.x, transform.position.y + 1);
-                    }
-                }
+                YOffset = transform.position.y - player.transform.position.y;
+            }
+        }
+        else if(transform.position.y - player.transform.position.y < downRadius)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
+            if (YOffset == float.NaN)
+            {
+                YOffset = transform.position.y - player.transform.position.y;
             }
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 10)
+        {
+            print("HIt camera wall");
+        }
+    }
 }
