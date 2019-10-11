@@ -634,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c837151447ebef34dbcddd450c4e49c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
 --- !u!1 &878922199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,6 +1160,40 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 551993926}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: attack1
+      value: 
+      objectReference: {fileID: 6465703998182614185, guid: 9b373bafb338f644384466ffd2a40010,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 6465703998182614185, guid: 9b373bafb338f644384466ffd2a40010,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: attacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 1437399983933144040, guid: af359a5404dedc343bdf32be22ad9cbe,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: attacks.Array.data[2]
+      value: 
+      objectReference: {fileID: 3112630139184041879, guid: 0ab79ba1c254db5429c107cdbac5ba88,
+        type: 3}
+    - target: {fileID: 5184887781497828862, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184887781497828862, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00b87b0789e92a844a09cd4f240be22b, type: 3}
 --- !u!1001 &5618496293747283694

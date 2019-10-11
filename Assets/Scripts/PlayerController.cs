@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static GameObject attack1;
+    public static GameObject attack2;
+    public static GameObject attack3;
+    public static int MAX_HEALTH = 2;
+    public static int MAX_SHIELD = 100;
+
     public GameObject player;
+    public GameObject[] attacks = { attack1, attack2, attack3 };
     public float maxSpeed = 7;
     public float takeOffSpeed = 7;
     public float maxJumpHeight = 10;
     public float gravity = 0.01f;
     public bool canControl = true;
+	
+	public int health = MAX_HEALTH;
+	public int shield = MAX_SHIELD;
 
     private bool isGrounded = false;
     private bool isJumping = false;
     private int groundingCollisions = 0;
     private Vector2 move;
     private float distToGround;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -94,7 +105,12 @@ public class PlayerController : MonoBehaviour
                     move.y -= gravity;
                 }
             }
-
+			
+			if(Input.GetButtonDown("Fire1")){
+				GameObject combo = Instantiate(attacks[0]) as GameObject;
+                combo.transform.position = new Vector2(transform.position.x + 0.16f, transform.position.y);
+			}
+			
             //Apply movement
             player.GetComponent<Rigidbody2D>().velocity = move;
         }
