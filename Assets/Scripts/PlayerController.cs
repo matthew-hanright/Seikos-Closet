@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     private int groundingCollisions = 0;
     private Vector2 move;
     private float distToGround;
+
+    public Sprite neutral;
+    public Sprite walking;
 	
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
             if (Mathf.Abs(move.x) < maxSpeed)
             {
                 move.x = Input.GetAxis("Horizontal") * maxSpeed;
+                GetComponent<SpriteRenderer>().sprite = walking;
             }
             if (move.x < 0)
             {
@@ -72,6 +76,10 @@ public class PlayerController : MonoBehaviour
                         player.GetComponentInChildren<BoxCollider2D>().offset.x * -1,
                         player.GetComponentInChildren<BoxCollider2D>().offset.y);
                 }
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = neutral;
             }
 
             //Vertical Movement

@@ -82,7 +82,7 @@ public class CameraController : MonoBehaviour
     {
         if(collision.gameObject.layer == 10)
         {
-            print("HIt camera wall");
+            
         }
     }
 }

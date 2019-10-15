@@ -66,7 +66,7 @@ public class PlatformMove : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (shouldMove)
+        if (shouldMove && collision.tag == "Player")
         {
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(intervalX * magicForceNumber, 0.0f));
         }
