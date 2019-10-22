@@ -17,18 +17,23 @@ public class PlayerController : MonoBehaviour
     public float maxJumpHeight = 10;
     public float gravity = 0.01f;
     public bool canControl = true;
+    public float invincibilityLength = 0.2f;
 	
 	public int health = MAX_HEALTH;
 	public int shield = MAX_SHIELD;
 
+    private bool isInvincible = false;
     private bool isGrounded = false;
     private bool isJumping = false;
     private int groundingCollisions = 0;
     private Vector2 move;
     private float distToGround;
+    private float timeOfHit;
 
     public Sprite neutral;
     public Sprite walking;
+
+    private int framesPerSecond = 10;
 	
     // Start is called before the first frame update
     void Start()
@@ -40,7 +45,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Time.time >= timeOfHit + invincibilityLength)
+        {
+            isInvincible = false;
+        }
     }
 
     private void FixedUpdate()
@@ -168,6 +176,39 @@ public class PlayerController : MonoBehaviour
             {
                 move.y += gravity;
             }
+        }
+    }
+
+    public void takeDamage(int damage)
+    {
+        if (!isInvincible)
+        {
+            if (shield > 0)
+            {
+                shield -= damage;
+                if (shield < 0)
+                {
+                    shield = 0;
+                }
+            }
+            else
+            {
+                if (health > 0)
+                {
+                    health -= 1;
+                    if (health == 0)
+                    {
+                        Time.timeScale = 0;
+                    }
+                }
+            }
+            print("Vulnerable, health: " + health + "; shield: " + shield);
+            isInvincible = true;
+            timeOfHit = Time.time;
+        }
+        else
+        {
+            print("Invulnerable, health: " + health + "; shield: " + shield);
         }
     }
 }

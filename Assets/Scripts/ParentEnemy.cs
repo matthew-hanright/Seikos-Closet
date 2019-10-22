@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ParentEnemy : MonoBehaviour
 {
+    public int damage = 1;
     public bool isGrounded = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +17,21 @@ public class ParentEnemy : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().takeDamage(damage);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().takeDamage(damage);
+        }
     }
 }
