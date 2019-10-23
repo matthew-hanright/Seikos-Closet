@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour
 			if(Input.GetButtonDown("Fire1")){
 				GameObject combo = Instantiate(attacks[0]) as GameObject;
                 combo.transform.position = new Vector2(transform.position.x + 0.16f, transform.position.y);
+
 			}
 			
             //Apply movement

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicDialogue : MonoBehaviour
 {
     public PlayerController player;
-
+    public Text DialogeBox;
     private string[] text;
     private int i;
     private bool haveControl = false;
@@ -15,7 +16,7 @@ public class BasicDialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DialogeBox.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,11 +53,13 @@ public class BasicDialogue : MonoBehaviour
         //If possible, display the requested dialogue
         if (i <= text.Length - 1)
         {
-            Debug.Log(text[i]);
+            DialogeBox.gameObject.SetActive(true);
+            DialogeBox.text = this.text[i];
         }
         else
         {
             //Else, the dialogue is done, return control to the player
+            DialogeBox.gameObject.SetActive(false);
             giveControl = true;
             haveControl = false;
         }
@@ -72,11 +75,14 @@ public class BasicDialogue : MonoBehaviour
         //If possible, display the first piece of dialogue
         if(startIndex <= text.Length - 1)
         {
-            Debug.Log(this.text[i]);
+            DialogeBox.gameObject.SetActive(true);
+            DialogeBox.text = this.text[i];
+            //Debug.Log(this.text[i]);
         }
         else
         {
             //Else, there is not dialogue present/at that index, return control
+            DialogeBox.gameObject.SetActive(false);
             giveControl = true;
             haveControl = false;
         }
