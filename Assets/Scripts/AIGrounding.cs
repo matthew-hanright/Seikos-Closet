@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIGrounding : MonoBehaviour
 {
-    private int groundingCollisions;
+    public int groundingCollisions;
     // Start is called before the first frame update
     void Start()
     {
