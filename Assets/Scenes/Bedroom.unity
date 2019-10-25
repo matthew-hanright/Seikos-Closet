@@ -1490,6 +1490,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 4743000240609699784, guid: b6d8aea63b797b346b600f0ef017eb08,
+        type: 3}
+      propertyPath: orthographic size
+      value: 3.5873365
+      objectReference: {fileID: 0}
     - target: {fileID: 4743000240609699639, guid: b6d8aea63b797b346b600f0ef017eb08,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1565,11 +1570,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1846700086}
-    - target: {fileID: 4743000240609699784, guid: b6d8aea63b797b346b600f0ef017eb08,
-        type: 3}
-      propertyPath: orthographic size
-      value: 2.5010037
-      objectReference: {fileID: 0}
     - target: {fileID: 4743000240609699638, guid: b6d8aea63b797b346b600f0ef017eb08,
         type: 3}
       propertyPath: m_Offset.x
