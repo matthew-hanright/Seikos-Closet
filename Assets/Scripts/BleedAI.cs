@@ -16,7 +16,7 @@ public class BleedAI : ParentEnemy
     private bool firstJump = false;
     private bool isStunned = false;
 
-    private float jumpForce = 40f;
+    private float jumpForce = 400f;
     private float stunnedTime;
     private float stunnedLength = 0.9f;
 
@@ -43,7 +43,7 @@ public class BleedAI : ParentEnemy
         }
         else if(isRunning)
         {
-            if (Mathf.Round(GetComponent<Rigidbody2D>().velocity.x) < goalDirection.x * runSpeed)
+            if (Mathf.Abs(Mathf.Round(GetComponent<Rigidbody2D>().velocity.x)) < runSpeed - 2.0f)
             {
                 if (isGrounded)
                 {
@@ -54,7 +54,6 @@ public class BleedAI : ParentEnemy
             {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, jumpForce));
                 firstJump = true;
-                GetComponent<Rigidbody2D>().gravityScale = 1.0f;
             }
             if(player.transform.position.x < transform.position.x)
             {
@@ -77,8 +76,12 @@ public class BleedAI : ParentEnemy
         }
         else if(collision.tag == "Solid")
         {
-            isStunned = true;
-            stunnedTime = Time.time;
+            if (!firstJump)
+            {
+                isStunned = true;
+                stunnedTime = Time.time;
+                firstJump = true;
+            }
         }
     }
 
@@ -96,15 +99,31 @@ public class BleedAI : ParentEnemy
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "MainCamera")
+        if (collision.gameObject.tag == "MainCamera" && (
+            (collision.transform.position.x - collision.transform.lossyScale.x > 
+                transform.position.x + transform.lossyScale.x) ||
+            (collision.transform.position.x + collision.transform.lossyScale.x < 
+                transform.position.x - transform.lossyScale.x) ||
+            (collision.transform.position.y - collision.transform.lossyScale.y > 
+                transform.position.y + transform.lossyScale.y) ||
+            (collision.transform.position.y + collision.transform.lossyScale.y < 
+                transform.position.y - transform.lossyScale.y)))
         {
+            if((collision.transform.position.y - collision.transform.lossyScale.y >
+                transform.position.y + transform.lossyScale.y))
+            {
+                print("cam bound: " + (collision.transform.position.y - collision.transform.lossyScale.y) + 
+                    "bleed bound: " + (transform.position.y + transform.lossyScale.y));
+            }
             isRunning = false;
+            isHiding = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             GetComponent<SpriteRenderer>().enabled = false;
             transform.position = startingLocation;
             firstJump = false;
             GetComponentInChildren<BleedTriggerController>().restart();
+            GetComponentInChildren<AIGrounding>().groundingCollisions = 0;
         }
     }
 }

@@ -138,7 +138,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Solid" && collision.gameObject.transform.position.y < transform.position.y)
+        if(collision.gameObject.tag == "Solid" && 
+            collision.gameObject.transform.position.y < transform.position.y &&
+            collision.gameObject.layer != 11)
         {
             groundingCollisions++;
             isGrounded = true;
@@ -202,13 +204,8 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            print("Vulnerable, health: " + health + "; shield: " + shield);
             isInvincible = true;
             timeOfHit = Time.time;
-        }
-        else
-        {
-            print("Invulnerable, health: " + health + "; shield: " + shield);
         }
     }
 }
