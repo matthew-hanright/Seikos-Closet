@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 	public int health = MAX_HEALTH;
 	public int shield = MAX_SHIELD;
 
+    private bool isWalking = false;
     private bool isInvincible = false;
     private bool isGrounded = false;
     private bool isJumping = false;
@@ -31,7 +32,10 @@ public class PlayerController : MonoBehaviour
     private float timeOfHit;
 
     public Sprite neutral;
-    public Sprite walking;
+    public Sprite[] walking;
+    private int walkingSubSprite = 0;
+    private float frameRate = 0.12f;
+    private float frameStartTime;
 
     private int framesPerSecond = 10;
 	
@@ -40,6 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         player = this.gameObject;
         distToGround = player.GetComponent<BoxCollider2D>().bounds.extents.y;
+        frameStartTime = Time.time;
     }
 
     // Update is called once per frame
@@ -48,6 +53,26 @@ public class PlayerController : MonoBehaviour
         if(Time.time >= timeOfHit + invincibilityLength)
         {
             isInvincible = false;
+        }
+    }
+
+    private void OnGUI()
+    {
+        if (isWalking && canControl)
+        {
+            if (Time.time >= frameStartTime + frameRate)
+            {
+                if (walkingSubSprite < walking.Length - 1)
+                {
+                    walkingSubSprite += 1;
+                }
+                else
+                {
+                    walkingSubSprite = 0;
+                }
+                frameStartTime = Time.time;
+                GetComponent<SpriteRenderer>().sprite = walking[walkingSubSprite];
+            }
         }
     }
 
@@ -61,7 +86,8 @@ public class PlayerController : MonoBehaviour
             if (Mathf.Abs(move.x) < maxSpeed)
             {
                 move.x = Input.GetAxis("Horizontal") * maxSpeed;
-                GetComponent<SpriteRenderer>().sprite = walking;
+                GetComponent<SpriteRenderer>().sprite = walking[walkingSubSprite];
+                isWalking = true;
             }
             if (move.x < 0)
             {
@@ -80,6 +106,7 @@ public class PlayerController : MonoBehaviour
                 if (transform.localScale.x < 0)
                 {
                     transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
+                    //Flip the interact box as well
                     player.GetComponentInChildren<BoxCollider2D>().offset = new Vector2(
                         player.GetComponentInChildren<BoxCollider2D>().offset.x * -1,
                         player.GetComponentInChildren<BoxCollider2D>().offset.y);
@@ -88,6 +115,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 GetComponent<SpriteRenderer>().sprite = neutral;
+                isWalking = false;
             }
 
             //Vertical Movement
@@ -186,6 +214,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isInvincible)
         {
+            print("Shield: " + shield + "; health: " + health);
             if (shield > 0)
             {
                 shield -= damage;

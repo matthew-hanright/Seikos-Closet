@@ -181,6 +181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
         type: 3}
+      propertyPath: walking.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
       propertyPath: attacks.Array.data[0]
       value: 
       objectReference: {fileID: 6465703998182614185, guid: 9b373bafb338f644384466ffd2a40010,
@@ -200,7 +205,54 @@ PrefabInstance:
         type: 3}
       propertyPath: walking
       value: 
-      objectReference: {fileID: 21300000, guid: ebf114b4f6e9f9a49a4d048b97331178,
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: walking.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: ebdfce46e06200941b3418cd90f48bcf,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: walking.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300002, guid: ebdfce46e06200941b3418cd90f48bcf,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: walking.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300004, guid: ebdfce46e06200941b3418cd90f48bcf,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: walking.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300006, guid: ebdfce46e06200941b3418cd90f48bcf,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: walking.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300008, guid: ebdfce46e06200941b3418cd90f48bcf,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: walking.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300010, guid: ebdfce46e06200941b3418cd90f48bcf,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: walking.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300012, guid: ebdfce46e06200941b3418cd90f48bcf,
+        type: 3}
+    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
+        type: 3}
+      propertyPath: walking.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300014, guid: ebdfce46e06200941b3418cd90f48bcf,
         type: 3}
     - target: {fileID: 5184887781497828861, guid: 00b87b0789e92a844a09cd4f240be22b,
         type: 3}
@@ -1490,6 +1542,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 4743000240609699784, guid: b6d8aea63b797b346b600f0ef017eb08,
+        type: 3}
+      propertyPath: orthographic size
+      value: 2.5010037
+      objectReference: {fileID: 0}
     - target: {fileID: 4743000240609699639, guid: b6d8aea63b797b346b600f0ef017eb08,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1565,11 +1622,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1846700086}
-    - target: {fileID: 4743000240609699784, guid: b6d8aea63b797b346b600f0ef017eb08,
-        type: 3}
-      propertyPath: orthographic size
-      value: 2.5010037
-      objectReference: {fileID: 0}
     - target: {fileID: 4743000240609699638, guid: b6d8aea63b797b346b600f0ef017eb08,
         type: 3}
       propertyPath: m_Offset.x
