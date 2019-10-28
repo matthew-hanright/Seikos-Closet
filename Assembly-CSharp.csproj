@@ -9,11 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-<<<<<<< HEAD
-    <ProjectGuid>{4AD29DC9-9426-CE4C-1A9B-315B9FF26625}</ProjectGuid>
-=======
     <ProjectGuid>{DAA63FC7-CD4F-F1D5-0103-19ABE660F937}</ProjectGuid>
->>>>>>> 2a367aa97e81cc61515ac376b7e1144874b77aff
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -74,31 +70,14 @@
     <Compile Include="Assets\Scripts\ChatterAI.cs" />
     <Compile Include="Assets\Scripts\ChatterPlatformEndTurn.cs" />
     <Compile Include="Assets\Scripts\ChatterTurning.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\ChatterVision.cs" />
-=======
->>>>>>> 2a367aa97e81cc61515ac376b7e1144874b77aff
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\InteractBoxController.cs" />
     <Compile Include="Assets\Scripts\ParentEnemy.cs" />
     <Compile Include="Assets\Scripts\PlatformMove.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\UIDungeonScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
-<<<<<<< HEAD
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-=======
       <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
@@ -112,7 +91,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
->>>>>>> 2a367aa97e81cc61515ac376b7e1144874b77aff
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -315,18 +293,6 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
-    <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-=======
->>>>>>> 2a367aa97e81cc61515ac376b7e1144874b77aff
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.8f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
     </Reference>

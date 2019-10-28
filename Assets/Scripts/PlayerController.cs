@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private float frameRate = 0.12f;
     private float frameStartTime;
 
+    private UIDungeonScript UIDungeon;
+
     private int framesPerSecond = 10;
 	
     // Start is called before the first frame update
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
         player = this.gameObject;
         distToGround = player.GetComponent<BoxCollider2D>().bounds.extents.y;
         frameStartTime = Time.time;
+        UIDungeon = FindObjectOfType<UIDungeonScript>();
     }
 
     // Update is called once per frame
@@ -136,6 +139,7 @@ public class PlayerController : MonoBehaviour
                 if (move.y < maxJumpHeight)
                 {
                     move.y += takeOffSpeed;
+                    
                 }
                 else
                 {
@@ -215,9 +219,11 @@ public class PlayerController : MonoBehaviour
         if (!isInvincible)
         {
             print("Shield: " + shield + "; health: " + health);
+            UIDungeon.GrabShield(shield);
             if (shield > 0)
             {
                 shield -= damage;
+                
                 if (shield < 0)
                 {
                     shield = 0;
@@ -228,6 +234,7 @@ public class PlayerController : MonoBehaviour
                 if (health > 0)
                 {
                     health -= 1;
+                    UIDungeon.GrabHealth(health);
                     if (health == 0)
                     {
                         Time.timeScale = 0;
