@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6465703998182614185}
   m_LocalRotation: {x: -0, y: -0.10568199, z: 0, w: 0.9944}
   m_LocalPosition: {x: -2.59689, y: 1.00093, z: -1.67785}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.97054946}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -134,4 +134,4 @@ MonoBehaviour:
   mainCamera: {fileID: 4743000240609699787, guid: b6d8aea63b797b346b600f0ef017eb08,
     type: 3}
   body: {fileID: 0}
-  velx: 5
+  velx: 40

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UIDungeonScript : MonoBehaviour
 {
-    public static Text healthDisplay;
-    public static  Text shieldDisplay;
+    public Text healthDisplay;
+    public Text shieldDisplay;
 
     private void Start()
     {
@@ -15,12 +15,12 @@ public class UIDungeonScript : MonoBehaviour
 
     public void GrabHealth(int health)
     {
-        healthDisplay.text = health.ToString();
+        healthDisplay.text = "Health: " + health;
     }
 
     public void GrabShield(int shield)
     {
-        shieldDisplay.text = shield.ToString();
+        shieldDisplay.text = "Shield: " + shield;
     }
 
 }

@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerGrounding.cs" />
     <Compile Include="Assets\Scripts\UIDungeonScript.cs" />
+    <Compile Include="Assets\Scripts\Win.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

@@ -100,13 +100,13 @@ public class BleedAI : ParentEnemy
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "MainCamera" && (
-            (collision.transform.position.x - collision.bounds.size.x / 2 > 
+            (collision.transform.position.x - collision.bounds.extents.y > 
                 transform.position.x + transform.lossyScale.x) ||
-            (collision.transform.position.x + collision.bounds.size.x / 2 < 
+            (collision.transform.position.x + collision.bounds.extents.y < 
                 transform.position.x - transform.lossyScale.x) ||
-            (collision.transform.position.y - collision.bounds.size.y / 2 > 
+            (collision.transform.position.y - collision.bounds.extents.y > 
                 transform.position.y + transform.lossyScale.y) ||
-            (collision.transform.position.y + collision.bounds.size.y / 2 < 
+            (collision.transform.position.y + collision.bounds.extents.y < 
                 transform.position.y - transform.lossyScale.y)))
         {
             isRunning = false;

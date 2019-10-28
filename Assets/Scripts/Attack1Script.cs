@@ -24,13 +24,14 @@ public class Attack1Script : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Player")
+        if (collision.gameObject.tag == "Solid")
             Object.Destroy(this.gameObject);
 
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<ParentEnemy>().health -= damage;
             print("health = " + collision.gameObject.GetComponent<ParentEnemy>().health);
+            Object.Destroy(this.gameObject);
         }
     }
 }
