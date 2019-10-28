@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea8f8756a9f82841a448fda848bcf3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundingCollisions: 0
 --- !u!1 &6760384680320443163
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c1cd2b1b2bb0a44b442b99ec65bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 30
   damage: 1
   isGrounded: 0
   fallSpeed: 10

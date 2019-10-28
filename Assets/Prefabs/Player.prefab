@@ -106,11 +106,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  attack1: {fileID: 0}
+  attack2: {fileID: 0}
+  attack3: {fileID: 0}
+  attacks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   maxSpeed: 7
   takeOffSpeed: 7
   maxJumpHeight: 10
   gravity: 0.01
   canControl: 1
+  invincibilityLength: 0.2
+  health: 2
+  shield: 100
+  neutral: {fileID: 0}
+  walking: []
 --- !u!1 &5184887781497828859
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +226,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.5, y: 18}
+    oldSize: {x: 9.98, y: 16.59}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -257,11 +269,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  attack1: {fileID: 6465703998182614185, guid: 9b373bafb338f644384466ffd2a40010, type: 3}
+  attack2: {fileID: 1437399983933144040, guid: af359a5404dedc343bdf32be22ad9cbe, type: 3}
+  attack3: {fileID: 3112630139184041879, guid: 0ab79ba1c254db5429c107cdbac5ba88, type: 3}
+  attacks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   maxSpeed: 10
   takeOffSpeed: 8
   maxJumpHeight: 28
   gravity: 2
   canControl: 1
+  invincibilityLength: 0.2
+  health: 2
+  shield: 100
+  neutral: {fileID: 21300000, guid: 6e7141eb009fe56459ca9d503a6ed87c, type: 3}
+  walking:
+  - {fileID: 21300000, guid: ebdfce46e06200941b3418cd90f48bcf, type: 3}
+  - {fileID: 21300002, guid: ebdfce46e06200941b3418cd90f48bcf, type: 3}
+  - {fileID: 21300004, guid: ebdfce46e06200941b3418cd90f48bcf, type: 3}
+  - {fileID: 21300006, guid: ebdfce46e06200941b3418cd90f48bcf, type: 3}
+  - {fileID: 21300008, guid: ebdfce46e06200941b3418cd90f48bcf, type: 3}
+  - {fileID: 21300010, guid: ebdfce46e06200941b3418cd90f48bcf, type: 3}
+  - {fileID: 21300012, guid: ebdfce46e06200941b3418cd90f48bcf, type: 3}
+  - {fileID: 21300014, guid: ebdfce46e06200941b3418cd90f48bcf, type: 3}
 --- !u!114 &5184887781497828849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5184887781497828858}
+  DialogeBox: {fileID: 0}
 --- !u!61 &5184887781497828848
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -292,7 +325,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.5, y: 18}
+    oldSize: {x: 9.98, y: 16.59}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -318,7 +351,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.5, y: 18}
+    oldSize: {x: 9.98, y: 16.59}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
