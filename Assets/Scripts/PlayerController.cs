@@ -24,11 +24,9 @@ public class PlayerController : MonoBehaviour
 
     private bool isWalking = false;
     private bool isInvincible = false;
-    private bool isGrounded = false;
+    public bool isGrounded = false;
     private bool isJumping = false;
-    private int groundingCollisions = 0;
     private Vector2 move;
-    private float distToGround;
     private float timeOfHit;
 
     public Sprite neutral;
@@ -36,14 +34,11 @@ public class PlayerController : MonoBehaviour
     private int walkingSubSprite = 0;
     private float frameRate = 0.12f;
     private float frameStartTime;
-
-    private int framesPerSecond = 10;
 	
     // Start is called before the first frame update
     void Start()
     {
         player = this.gameObject;
-        distToGround = player.GetComponent<BoxCollider2D>().bounds.extents.y;
         frameStartTime = Time.time;
     }
 
@@ -96,9 +91,9 @@ public class PlayerController : MonoBehaviour
                     transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
                     //Swap which side the interact box is on when the player changes which direction
                     //they are facing
-                    player.GetComponentInChildren<BoxCollider2D>().offset = new Vector2(
-                        player.GetComponentInChildren<BoxCollider2D>().offset.x * -1,
-                        player.GetComponentInChildren<BoxCollider2D>().offset.y);
+                    GetComponentInChildren<BoxCollider2D>().offset = new Vector2(
+                        GetComponentInChildren<BoxCollider2D>().offset.x * -1,
+                        GetComponentInChildren<BoxCollider2D>().offset.y);
                 }
             }
             else if (move.x > 0)
@@ -107,9 +102,9 @@ public class PlayerController : MonoBehaviour
                 {
                     transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
                     //Flip the interact box as well
-                    player.GetComponentInChildren<BoxCollider2D>().offset = new Vector2(
-                        player.GetComponentInChildren<BoxCollider2D>().offset.x * -1,
-                        player.GetComponentInChildren<BoxCollider2D>().offset.y);
+                    GetComponentInChildren<BoxCollider2D>().offset = new Vector2(
+                        GetComponentInChildren<BoxCollider2D>().offset.x * -1,
+                        GetComponentInChildren<BoxCollider2D>().offset.y);
                 }
             }
             else
@@ -157,56 +152,23 @@ public class PlayerController : MonoBehaviour
 			}
 			
             //Apply movement
-            player.GetComponent<Rigidbody2D>().velocity = move;
+            GetComponent<Rigidbody2D>().velocity = move;
         }
         else
         {
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Solid" && 
-            collision.gameObject.transform.position.y < transform.position.y &&
-            collision.gameObject.layer != 11)
-        {
-            groundingCollisions++;
-            isGrounded = true;
-        }
-        else if (collision.gameObject.tag == "Solid" && collision.gameObject.transform.position.y > transform.position.y)
-        {
-            isJumping = false;
-            move.y = 0;
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, 0.0f);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Solid" && groundingCollisions > 0)
-        {
-            groundingCollisions--;
-            if(groundingCollisions == 0)
-            {
-                isGrounded = false;
-            }
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Solid")
+        if (collision.gameObject.tag == "Solid" && 
+            collision.gameObject.layer != 11 &&
+            collision.gameObject.transform.position.y > transform.position.y)
         {
-            if(collision.gameObject.transform.position.y > transform.position.y)
-            {
-                isJumping = false;
-                move.y -= gravity;
-            }
-            else if(collision.gameObject.transform.position.y < transform.position.y)
-            {
-                move.y += gravity;
-            }
+            isJumping = false;
+            move.y = 0;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
         }
     }
 
