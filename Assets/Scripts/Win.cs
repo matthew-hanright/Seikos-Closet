@@ -21,7 +21,7 @@ public class Win : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            SceneManager.LoadScene("Demo Menu");
+            SceneManager.LoadScene("DemoMenu");
         }
     }
 }
