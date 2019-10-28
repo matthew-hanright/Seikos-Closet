@@ -11,8 +11,16 @@ public class CameraController : MonoBehaviour
     private float XDivisor = 0.5f;
     private float YDivisor = 1.5f;
     private float radius = 1;
-    private float downRadius = 4;
+    private float downRadius = 3;
     private float YOffset;
+
+    public float xSpeedMultiplier = 1;
+    public float ySpeedMultiplier = 1;
+
+    public bool followPlayer = true;
+    public bool needToChangeLayer = false;
+    private bool tooFarHorizontal = false;
+    private bool tooFarVertical = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,62 +35,70 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Player moves too far to the sides
-        if(Mathf.Round(player.transform.position.x) < Mathf.Round(transform.position.x - XBounds))
+        if (followPlayer)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(
-                (player.transform.position.x - transform.position.x) / XDivisor, 
-                GetComponent<Rigidbody2D>().velocity.y);
-        }
-        else if(Mathf.Round(player.transform.position.x) > Mathf.Round(transform.position.x + XBounds))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(
-                -(transform.position.x - player.transform.position.x) / XDivisor, 
-                GetComponent<Rigidbody2D>().velocity.y);
-        }
-        else if(Mathf.Abs(player.transform.position.x - transform.position.x) < radius)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
-        }
-
-        //Player moves too far vertically
-        if(Mathf.Round(player.transform.position.y) < Mathf.Round(transform.position.y - YMin))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(
-                GetComponent<Rigidbody2D>().velocity.x, 
-                -Mathf.Pow(((transform.position.y - player.transform.position.y) / (YDivisor * 1.7f)), 
-                2));
-        }
-        else if(Mathf.Round(player.transform.position.y) > Mathf.Round(transform.position.y + YMax))
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(
-                GetComponent<Rigidbody2D>().velocity.x, 
-                Mathf.Pow(((player.transform.position.y - transform.position.y) / YDivisor), 
-                2));
-        }
-        else if(player.transform.position.y - transform.position.y < radius && player.transform.position.y > transform.position.y)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
-            if(YOffset == float.NaN)
+            //Player moves too far to the sides
+            if (Mathf.Round(player.transform.position.x) < Mathf.Round(transform.position.x - XBounds))
             {
-                YOffset = transform.position.y - player.transform.position.y;
+                tooFarHorizontal = true;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(
+                    ((player.transform.position.x - transform.position.x) / XDivisor) * xSpeedMultiplier,
+                    GetComponent<Rigidbody2D>().velocity.y);
             }
-        }
-        else if(transform.position.y - player.transform.position.y < downRadius)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
-            if (YOffset == float.NaN)
+            else if (Mathf.Round(player.transform.position.x) > Mathf.Round(transform.position.x + XBounds))
             {
-                YOffset = transform.position.y - player.transform.position.y;
+                tooFarHorizontal = true;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(
+                    (-(transform.position.x - player.transform.position.x) / XDivisor) * xSpeedMultiplier,
+                    GetComponent<Rigidbody2D>().velocity.y);
             }
-        }
-    }
+            else if (Mathf.Abs(player.transform.position.x - transform.position.x) < radius)
+            { //If the player is within the bounds, stop moving along x
+                tooFarHorizontal = false;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
+            }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.layer == 10)
-        {
-            
+            //Player moves too far vertically
+            if (Mathf.Round(player.transform.position.y) < Mathf.Round(transform.position.y - YMin))
+            {
+                tooFarVertical = true;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(
+                    GetComponent<Rigidbody2D>().velocity.x,
+                    (-Mathf.Pow(((transform.position.y - player.transform.position.y) / (YDivisor * 1.7f)),
+                    2)) * ySpeedMultiplier);
+            }
+            else if (Mathf.Round(player.transform.position.y) > Mathf.Round(transform.position.y + YMax))
+            {
+                tooFarVertical = true;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(
+                    GetComponent<Rigidbody2D>().velocity.x,
+                    (Mathf.Pow(((player.transform.position.y - transform.position.y) / YDivisor),
+                    2)) * ySpeedMultiplier);
+            }
+            else if (player.transform.position.y - transform.position.y < radius && player.transform.position.y > transform.position.y)
+            { //If the player is within the bounds, stop moving along y
+                tooFarVertical = false;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
+                if (YOffset == float.NaN)
+                {
+                    YOffset = transform.position.y - player.transform.position.y;
+                }
+            }
+            else if (transform.position.y - player.transform.position.y < downRadius)
+            {
+                tooFarVertical = false;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
+                if (YOffset == float.NaN)
+                {
+                    YOffset = transform.position.y - player.transform.position.y;
+                }
+            }
+
+            if(!tooFarHorizontal && !tooFarVertical && needToChangeLayer)
+            {
+                gameObject.layer = 10;
+                needToChangeLayer = false;
+            }
         }
     }
 }

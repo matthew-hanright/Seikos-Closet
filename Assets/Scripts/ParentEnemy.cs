@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ParentEnemy : MonoBehaviour
 {
+    public static int MAX_HEALTH = 30;
+
+    public int health = MAX_HEALTH;
     public int damage = 1;
     public bool isGrounded = false;
 
@@ -32,6 +35,8 @@ public class ParentEnemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerController>().takeDamage(damage);
+            if (health <= 0)
+                Object.Destroy(this.gameObject);
         }
     }
 }

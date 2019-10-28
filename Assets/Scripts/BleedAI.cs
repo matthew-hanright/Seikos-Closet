@@ -109,25 +109,6 @@ public class BleedAI : ParentEnemy
             (collision.transform.position.y + collision.bounds.size.y / 2 < 
                 transform.position.y - transform.lossyScale.y)))
         {
-            if((collision.transform.position.x - collision.transform.lossyScale.x >
-                transform.position.x + transform.lossyScale.x))
-            {
-                print("out left");
-            }
-            else if((collision.transform.position.x + collision.transform.lossyScale.x <
-                transform.position.x - transform.lossyScale.x))
-            {
-                print("out right");
-            }
-            else if((collision.transform.position.y - collision.transform.lossyScale.y >
-                transform.position.y + transform.lossyScale.y))
-            {
-                print("camera y: " + (collision.transform.position.y - collision.transform.lossyScale.y) + "; bleed y: " + (transform.position.y + transform.lossyScale.y));
-            }
-            else
-            {
-                print("out up");
-            }
             isRunning = false;
             isHiding = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
