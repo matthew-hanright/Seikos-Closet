@@ -36,13 +36,10 @@ public class PlayerController : MonoBehaviour
     private int walkingSubSprite = 0;
     private float frameRate = 0.12f;
     private float frameStartTime;
-<<<<<<< HEAD
 
     private UIDungeonScript UIDungeon;
 
     private int framesPerSecond = 10;
-=======
->>>>>>> 828cee3d4a18022f3f8f8e28bdb147fab009f067
 	
     // Start is called before the first frame update
     void Start()
