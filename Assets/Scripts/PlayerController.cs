@@ -20,16 +20,20 @@ public class PlayerController : MonoBehaviour
     public float gravity = 0.01f;
     public bool canControl = true;
     public float invincibilityLength = 0.2f;
-	
-	public int health = MAX_HEALTH;
+    public float regenLength = 1f;
+    public int regenAmount = 2;
+
+    public int health = MAX_HEALTH;
 	public int shield = MAX_SHIELD;
 
     private bool isWalking = false;
     private bool isInvincible = false;
+    private bool canRegen = true;
     public bool isGrounded = false;
     private bool isJumping = false;
     private Vector2 move;
     private float timeOfHit;
+    private float timeOfRegen;
 
     public Sprite neutral;
     public Sprite[] walking;
@@ -38,18 +42,18 @@ public class PlayerController : MonoBehaviour
     private float frameStartTime;
 
     private UIDungeonScript UIDungeon;
-
-    private int framesPerSecond = 10;
 	
     // Start is called before the first frame update
     void Start()
     {
         player = this.gameObject;
-        attacks[1] = attack1;
-        attacks[2] = attack2;
-        attacks[3] = attack3;
+        attacks[0] = attack1;
+        attacks[1] = attack2;
+        attacks[2] = attack3;
         frameStartTime = Time.time;
         UIDungeon = FindObjectOfType<UIDungeonScript>();
+        UIDungeon.GrabHealth(health);
+        UIDungeon.GrabShield(shield);
     }
 
     // Update is called once per frame
@@ -67,6 +71,31 @@ public class PlayerController : MonoBehaviour
         else if(Input.GetButtonDown("Escape") && Time.timeScale == 0)
         {
             Time.timeScale = 1;
+        }
+
+        if(Input.GetButton("Regen"))
+        {
+            if(canRegen)
+            {
+                if (shield < MAX_SHIELD)
+                {
+                    timeOfRegen = Time.time;
+                    shield += regenAmount;
+                    canRegen = false;
+                }
+                else if(shield > MAX_SHIELD)
+                {
+                    shield = MAX_SHIELD;
+                }
+                UIDungeon.GrabShield(shield);
+            }
+            else
+            {
+                if(Time.time > timeOfRegen + regenLength)
+                {
+                    canRegen = true;
+                }
+            }
         }
     }
 
@@ -167,10 +196,13 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Fire1"))
             {
+                print("Fire");
                 GameObject combo = Instantiate(attacks[0]) as GameObject;
                 combo.transform.position = new Vector2(transform.position.x + 0.16f, transform.position.y);
                 if (move.x < 0)
+                {
                     combo.GetComponent<Attack1Script>().velx *= -1;
+                }
 
 			}
 			
@@ -199,12 +231,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!isInvincible)
         {
-            print("Shield: " + shield + "; health: " + health);
-            UIDungeon.GrabShield(shield);
+            print("Health: " + health + "; Shield: " + shield);
             if (shield > 0)
             {
                 shield -= damage;
-                
+                UIDungeon.GrabShield(shield);
                 if (shield < 0)
                 {
                     shield = 0;

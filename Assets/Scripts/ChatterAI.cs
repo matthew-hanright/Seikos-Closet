@@ -24,6 +24,10 @@ public class ChatterAI : ParentEnemy
             turn(movingLeft);
             needToTurn = false;
         }
+        if (health <= 0)
+        {
+            Object.Destroy(this.gameObject);
+        }
     }
 
     private void FixedUpdate()

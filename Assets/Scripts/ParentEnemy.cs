@@ -19,7 +19,10 @@ public class ParentEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health <= 0)
+        {
+            Object.Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,8 +38,6 @@ public class ParentEnemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerController>().takeDamage(damage);
-            if (health <= 0)
-                Object.Destroy(this.gameObject);
         }
     }
 }
