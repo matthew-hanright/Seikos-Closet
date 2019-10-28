@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIGrounding : MonoBehaviour
+public class PlayerGrounding : MonoBehaviour
 {
-    public int groundingCollisions;
+    private int groundingCollisions = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,14 +14,14 @@ public class AIGrounding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Solid" && collision.gameObject.layer != 11)
+        if (collision.tag == "Solid" && collision.gameObject.layer != 11)
         {
-            GetComponentInParent<ParentEnemy>().isGrounded = true;
+            GetComponentInParent<PlayerController>().isGrounded = true;
             GetComponentInParent<Rigidbody2D>().velocity = new Vector2(GetComponentInParent<Rigidbody2D>().velocity.x, 0.0f);
             groundingCollisions++;
         }
@@ -29,12 +29,12 @@ public class AIGrounding : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Solid" && collision.gameObject.layer != 11)
+        if (collision.gameObject.tag == "Solid" && collision.gameObject.layer != 11)
         {
             groundingCollisions--;
             if (groundingCollisions == 0)
             {
-                GetComponentInParent<ParentEnemy>().isGrounded = false;
+                GetComponentInParent<PlayerController>().isGrounded = false;
             }
         }
     }

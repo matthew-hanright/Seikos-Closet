@@ -436,7 +436,9 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 331105350871090229, guid: 17d4e888c44ff3f4186b45c90029a527, type: 3}
+    - {fileID: 331105350871090190, guid: 17d4e888c44ff3f4186b45c90029a527, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 17d4e888c44ff3f4186b45c90029a527, type: 3}
 --- !u!1001 &527223436
 PrefabInstance:
@@ -1393,8 +1395,7 @@ PrefabInstance:
         type: 3}
       propertyPath: walking
       value: 
-      objectReference: {fileID: 21300000, guid: ebf114b4f6e9f9a49a4d048b97331178,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5184887781497828863, guid: 00b87b0789e92a844a09cd4f240be22b,
         type: 3}
       propertyPath: m_Constraints
