@@ -41,13 +41,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         player = this.gameObject;
-<<<<<<< HEAD
         attacks[1] = attack1;
         attacks[2] = attack2;
         attacks[3] = attack3;
-        distToGround = player.GetComponent<BoxCollider2D>().bounds.extents.y;
-=======
->>>>>>> d8c3bff2aa96efd0a5b942a74b0faffbf9c02fdc
         frameStartTime = Time.time;
     }
 
