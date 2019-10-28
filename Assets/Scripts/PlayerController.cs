@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -48,6 +49,15 @@ public class PlayerController : MonoBehaviour
         if(Time.time >= timeOfHit + invincibilityLength)
         {
             isInvincible = false;
+        }
+
+        if(Input.GetButtonDown("Escape") && Time.timeScale > 0)
+        {
+            Time.timeScale = 0;
+        }
+        else if(Input.GetButtonDown("Escape") && Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
         }
     }
 
@@ -192,7 +202,7 @@ public class PlayerController : MonoBehaviour
                     health -= 1;
                     if (health == 0)
                     {
-                        Time.timeScale = 0;
+                        SceneManager.LoadScene("DemoMenu");
                     }
                 }
             }

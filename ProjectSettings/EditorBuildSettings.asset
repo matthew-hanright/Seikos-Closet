@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/DemoMenu.unity
+    guid: 924bbc7d7d405fd4d8947ef4fb7113a8
+  - enabled: 1
+    path: Assets/Scenes/BigDungeon.unity
+    guid: bbcf6db05689ba34fbac1b634b045f1f
   m_configObjects: {}
