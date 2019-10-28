@@ -38,16 +38,14 @@ public class PlayerController : MonoBehaviour
     private float frameStartTime;
 
     private UIDungeonScript UIDungeon;
-
-    private int framesPerSecond = 10;
 	
     // Start is called before the first frame update
     void Start()
     {
         player = this.gameObject;
-        attacks[1] = attack1;
-        attacks[2] = attack2;
-        attacks[3] = attack3;
+        attacks[0] = attack1;
+        attacks[1] = attack2;
+        attacks[2] = attack3;
         frameStartTime = Time.time;
         UIDungeon = FindObjectOfType<UIDungeonScript>();
     }
@@ -199,7 +197,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!isInvincible)
         {
-            print("Shield: " + shield + "; health: " + health);
             UIDungeon.GrabShield(shield);
             if (shield > 0)
             {

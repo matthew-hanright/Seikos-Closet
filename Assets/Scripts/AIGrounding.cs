@@ -19,7 +19,7 @@ public class AIGrounding : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Solid" && collision.gameObject.layer != 11)
+        if(collision.tag == "Solid")
         {
             GetComponentInParent<ParentEnemy>().isGrounded = true;
             GetComponentInParent<Rigidbody2D>().velocity = new Vector2(GetComponentInParent<Rigidbody2D>().velocity.x, 0.0f);
@@ -29,7 +29,7 @@ public class AIGrounding : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Solid" && collision.gameObject.layer != 11)
+        if (collision.tag == "Solid")
         {
             groundingCollisions--;
             if (groundingCollisions == 0)

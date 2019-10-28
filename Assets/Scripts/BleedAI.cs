@@ -16,7 +16,7 @@ public class BleedAI : ParentEnemy
     private bool firstJump = false;
     private bool isStunned = false;
 
-    private float jumpForce = 400f;
+    public float jumpForce = 400f;
     private float stunnedTime;
     private float stunnedLength = 0.9f;
 

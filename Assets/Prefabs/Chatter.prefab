@@ -227,8 +227,8 @@ MonoBehaviour:
   damage: 1
   isGrounded: 0
   movingLeft: 1
-  moveSpeed: 2
-  runSpeed: 5
+  moveSpeed: 12
+  runSpeed: 20
   seesPlayer: 0
 --- !u!70 &7221820106126728271
 CapsuleCollider2D:

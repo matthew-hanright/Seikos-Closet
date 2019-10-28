@@ -345,16 +345,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -37.265648
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 72.74437
-      objectReference: {fileID: 0}
     - target: {fileID: 6760384680320443165, guid: 291784b979a4dc14395f28341670715e,
         type: 3}
       propertyPath: player
@@ -602,16 +592,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -38.19668
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 74.60643
       objectReference: {fileID: 0}
     - target: {fileID: 6760384680320443165, guid: 291784b979a4dc14395f28341670715e,
         type: 3}
@@ -930,16 +910,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 38.128563
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -19.957752
       objectReference: {fileID: 0}
     - target: {fileID: 6760384680320443165, guid: 291784b979a4dc14395f28341670715e,
         type: 3}
@@ -1435,16 +1405,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -78.28099
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 154.77505
       objectReference: {fileID: 0}
     - target: {fileID: 6760384680320443165, guid: 291784b979a4dc14395f28341670715e,
         type: 3}
@@ -2632,16 +2592,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -72.35375
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 142.92058
       objectReference: {fileID: 0}
     - target: {fileID: 6760384680320443165, guid: 291784b979a4dc14395f28341670715e,
         type: 3}
@@ -4388,16 +4338,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -58.5335
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 115.280075
       objectReference: {fileID: 0}
     - target: {fileID: 6760384680320443165, guid: 291784b979a4dc14395f28341670715e,
         type: 3}
@@ -10657,16 +10597,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -78.28099
-      objectReference: {fileID: 0}
-    - target: {fileID: 6760384679152303705, guid: 291784b979a4dc14395f28341670715e,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 154.77505
       objectReference: {fileID: 0}
     - target: {fileID: 6760384680320443165, guid: 291784b979a4dc14395f28341670715e,
         type: 3}

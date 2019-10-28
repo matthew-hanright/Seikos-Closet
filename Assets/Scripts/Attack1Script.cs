@@ -22,9 +22,8 @@ public class Attack1Script : MonoBehaviour
         body.velocity = new Vector2(velx, vely);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("collision");
         if (collision.gameObject.tag != "Player")
             Object.Destroy(this.gameObject);
 
