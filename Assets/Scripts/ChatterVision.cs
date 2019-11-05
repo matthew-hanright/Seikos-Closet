@@ -23,12 +23,4 @@ public class ChatterVision : MonoBehaviour
             GetComponentInParent<ChatterAI>().seesPlayer = true;
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            GetComponentInParent<ChatterAI>().seesPlayer = false;
-        }
-    }
 }

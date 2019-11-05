@@ -100,15 +100,35 @@ public class BleedAI : ParentEnemy
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "MainCamera" && (
-            (collision.transform.position.x - collision.bounds.extents.y > 
+            (collision.transform.position.x - collision.bounds.extents.x > 
                 transform.position.x + transform.lossyScale.x) ||
-            (collision.transform.position.x + collision.bounds.extents.y < 
+            (collision.transform.position.x + collision.bounds.extents.x < 
                 transform.position.x - transform.lossyScale.x) ||
             (collision.transform.position.y - collision.bounds.extents.y > 
                 transform.position.y + transform.lossyScale.y) ||
             (collision.transform.position.y + collision.bounds.extents.y < 
                 transform.position.y - transform.lossyScale.y)))
         {
+            /*if(collision.transform.position.x - collision.bounds.extents.x >
+                transform.position.x + transform.lossyScale.x)
+            {
+                print("Out left");
+            }
+            else if (collision.transform.position.x + collision.bounds.extents.x <
+                transform.position.x - transform.lossyScale.x)
+            {
+                print("Out right");
+            }
+            else if (collision.transform.position.y - collision.bounds.extents.y >
+                transform.position.y + transform.lossyScale.y)
+            {
+                print("Out down");
+            }
+            else if (collision.transform.position.y + collision.bounds.extents.y <
+                transform.position.y - transform.lossyScale.y)
+            {
+                print("Out up");
+            }*/
             isRunning = false;
             isHiding = true;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -116,6 +136,7 @@ public class BleedAI : ParentEnemy
             GetComponent<SpriteRenderer>().enabled = false;
             transform.position = startingLocation;
             firstJump = false;
+            isStunned = false;
             GetComponentInChildren<BleedTriggerController>().restart();
             GetComponentInChildren<AIGrounding>().groundingCollisions = 0;
         }

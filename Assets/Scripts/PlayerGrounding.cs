@@ -19,7 +19,8 @@ public class PlayerGrounding : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Solid" && collision.gameObject.layer != 11)
+        if ((collision.tag == "Solid" && collision.gameObject.layer != 11) ||
+            collision.tag == "Enemy")
         {
             GetComponentInParent<PlayerController>().isGrounded = true;
             GetComponentInParent<Rigidbody2D>().velocity = new Vector2(GetComponentInParent<Rigidbody2D>().velocity.x, 0.0f);
@@ -29,7 +30,8 @@ public class PlayerGrounding : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Solid" && collision.gameObject.layer != 11)
+        if ((collision.gameObject.tag == "Solid" && collision.gameObject.layer != 11) || 
+            collision.gameObject.tag == "Enemy")
         {
             groundingCollisions--;
             if (groundingCollisions == 0)
