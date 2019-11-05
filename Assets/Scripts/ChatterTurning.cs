@@ -18,7 +18,7 @@ public class ChatterTurning : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Solid")
+        if (collision.gameObject.tag == "Solid" && collision.gameObject.layer == 11)
         {
             if (collision.gameObject.transform.position.x < transform.position.x)
             {

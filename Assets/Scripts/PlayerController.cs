@@ -196,7 +196,6 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Fire1"))
             {
-                print("Fire");
                 GameObject combo = Instantiate(attacks[0]) as GameObject;
                 combo.transform.position = new Vector2(transform.position.x + 0.16f, transform.position.y);
                 if (move.x < 0)
@@ -205,9 +204,12 @@ public class PlayerController : MonoBehaviour
                 }
 
 			}
-			
+
             //Apply movement
-            GetComponent<Rigidbody2D>().velocity = move;
+            if(move.x > 0 && GetComponent<Rigidbody2D>().velocity.x < move.x)
+            GetComponent<Rigidbody2D>().velocity = new Vector2(
+                GetComponent<Rigidbody2D>().velocity.x + move.x,
+                GetComponent<Rigidbody2D>().velocity.y + move.y);
         }
         else
         {
@@ -217,8 +219,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Solid" && 
-            collision.gameObject.layer != 11 &&
+        if (((collision.gameObject.tag == "Solid" && 
+            collision.gameObject.layer != 11) ||
+            collision.gameObject.tag == "Enemy") &&
             collision.gameObject.transform.position.y > transform.position.y)
         {
             isJumping = false;
@@ -227,11 +230,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void takeDamage(int damage)
+    public void takeDamage(int damage, Vector2 knockback)
     {
         if (!isInvincible)
         {
-            print("Health: " + health + "; Shield: " + shield);
             if (shield > 0)
             {
                 shield -= damage;
@@ -255,6 +257,10 @@ public class PlayerController : MonoBehaviour
             }
             isInvincible = true;
             timeOfHit = Time.time;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(
+                GetComponent<Rigidbody2D>().velocity.x + knockback.x,
+                GetComponent<Rigidbody2D>().velocity.y + knockback.y);
+            print("got knockbacked, velocity: " + GetComponent<Rigidbody2D>().velocity);
         }
     }
 }

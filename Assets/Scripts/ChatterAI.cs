@@ -32,6 +32,10 @@ public class ChatterAI : ParentEnemy
 
     private void FixedUpdate()
     {
+        if(isGrounded)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        }
         if(isGrounded && !seesPlayer && !stopMoving && !needToTurn)
         {
             if(movingLeft)
@@ -57,6 +61,11 @@ public class ChatterAI : ParentEnemy
         else if(stopMoving || needToTurn)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().gravityScale = 1.0f;
         }
     }
 
@@ -100,14 +109,6 @@ public class ChatterAI : ParentEnemy
         if (collision.gameObject.tag == "Player")
         {
             stopMoving = false;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            other.gameObject.GetComponent<PlayerController>().takeDamage(damage);
         }
     }
 }

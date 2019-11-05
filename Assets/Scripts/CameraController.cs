@@ -21,10 +21,15 @@ public class CameraController : MonoBehaviour
     public bool needToChangeLayer = false;
     private bool tooFarHorizontal = false;
     private bool tooFarVertical = false;
+
+    public Vector3 FINAL_POSITION;
+    public Vector3 FINAL_SCALE;
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = FINAL_POSITION;
+        transform.localScale = FINAL_SCALE;
+        GetComponent<Camera>().orthographicSize = 23.52861f;
     }
 
     // Update is called once per frame
