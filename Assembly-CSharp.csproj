@@ -83,6 +83,15 @@
     <Compile Include="Assets\Scripts\PlayerGrounding.cs" />
     <Compile Include="Assets\Scripts\UIDungeonScript.cs" />
     <Compile Include="Assets\Scripts\Win.cs" />
+    <None Include="Assets\Fonts\Noah\OFL.txt" />
+    <None Include="Assets\Fonts\Liu_Jian_Mao_Cao\OFL.txt" />
+    <None Include="Assets\Fonts\Seiko(Maybe)\OFL.txt" />
+    <None Include="Assets\Fonts\Mansalva\OFL.txt" />
+    <None Include="Assets\Fonts\Caveat\OFL.txt" />
+    <None Include="Assets\Fonts\Cassandra\OFL.txt" />
+    <None Include="Assets\Fonts\Rajdhani\OFL.txt" />
+    <None Include="Assets\Fonts\Rachel\OFL.txt" />
+    <None Include="Assets\Fonts\Seiko\OFL.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
