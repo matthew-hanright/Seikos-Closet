@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 6760384680320443162}
   m_Layer: 0
   m_Name: Bleed
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,6 +300,8 @@ MonoBehaviour:
   health: 30
   damage: 1
   isGrounded: 0
+  knockbackX: 300
+  knockbackY: 200
   fallSpeed: 10
   player: {fileID: 0}
   runSpeed: 35
