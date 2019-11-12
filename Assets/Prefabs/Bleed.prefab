@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.17425704, y: -54.17092}
+  m_Offset: {x: -0.17425704, y: -347.39975}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.621983, y: 106.55492}
+  m_Size: {x: 7.621983, y: 693.01263}
   m_EdgeRadius: 0
 --- !u!50 &6760384679152303706
 Rigidbody2D:
@@ -137,7 +137,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2411437, y: -3.636915}
+  m_Offset: {x: -0.32530546, y: -8.095402}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -148,7 +148,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.873673, y: 1.6234641}
+  m_Size: {x: 22.814404, y: 1.7916489}
   m_EdgeRadius: 0
 --- !u!114 &6760384679170006808
 MonoBehaviour:
@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 6760384680320443163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.58, y: 8.88, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 6760384679170006809}
   - {fileID: 6760384679152303707}
@@ -237,7 +237,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 748761d843e8ca6408a9906c3cc346f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b2250235cc95ef843b45e9c5e47d016e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -282,8 +282,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000023664315, y: -0.09794747}
-  m_Size: {x: 11.560455, y: 7.448407}
+  m_Offset: {x: -0.000023773311, y: 0.5750299}
+  m_Size: {x: 16.197197, y: 16.197197}
   m_Direction: 1
 --- !u!114 &6760384680320443165
 MonoBehaviour:
@@ -300,12 +300,20 @@ MonoBehaviour:
   health: 30
   damage: 1
   isGrounded: 0
-  knockbackX: 300
-  knockbackY: 200
+  knockbackX: 100
+  knockbackY: 70
   fallSpeed: 10
   player: {fileID: 0}
   runSpeed: 35
   jumpForce: 1000
+  moving:
+  - {fileID: 21300000, guid: b2250235cc95ef843b45e9c5e47d016e, type: 3}
+  - {fileID: 21300002, guid: b2250235cc95ef843b45e9c5e47d016e, type: 3}
+  - {fileID: 21300004, guid: b2250235cc95ef843b45e9c5e47d016e, type: 3}
+  - {fileID: 21300006, guid: b2250235cc95ef843b45e9c5e47d016e, type: 3}
+  - {fileID: 21300008, guid: b2250235cc95ef843b45e9c5e47d016e, type: 3}
+  frameRate: 0.12
+  resetTime: 10
 --- !u!70 &6760384680320443162
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

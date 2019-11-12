@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     public float regenLength = 1f;
     public int regenAmount = 2;
 
+    private bool lookingRight = true;
+    private float attackStartTime;
+    public float attackDelay = 0.5f;
+
     public int health = MAX_HEALTH;
 	public int shield = MAX_SHIELD;
 
@@ -38,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private float timeOfHit;
     private float timeOfRegen;
 
-    public Sprite neutral;
     public Sprite[] walking;
     private int walkingSubSprite = 0;
     private float frameRate = 0.12f;
@@ -57,6 +60,8 @@ public class PlayerController : MonoBehaviour
         UIDungeon = FindObjectOfType<UIDungeonScript>();
         UIDungeon.GrabHealth(health);
         UIDungeon.GrabShield(shield);
+
+        attackStartTime = Time.time;
     }
 
     // Update is called once per frame
@@ -135,6 +140,17 @@ public class PlayerController : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = walking[walkingSubSprite];
                 isWalking = true;
             }
+
+            //Determine if looking right
+            if(Input.GetAxis("Horizontal") < -0.2f)
+            {
+                lookingRight = false;
+            }
+            else if(Input.GetAxis("Horizontal") > 0.2f)
+            {
+                lookingRight = true;
+            }
+
             if (move.x < 0)
             {
                 if (transform.localScale.x > 0)
@@ -160,7 +176,6 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                GetComponent<SpriteRenderer>().sprite = neutral;
                 isWalking = false;
             }
 
@@ -201,15 +216,28 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            //Attack 1
+            if (Input.GetButtonDown("Fire1") && Time.time > attackStartTime + attackDelay)
             {
                 GameObject combo = Instantiate(attacks[0]) as GameObject;
-                combo.transform.position = new Vector2(transform.position.x + 0.16f, transform.position.y);
-                if (move.x < 0)
+                if (lookingRight)
                 {
-                    combo.GetComponent<Attack1Script>().velx *= -1;
+                    combo.transform.position = new Vector2(
+                        transform.position.x + transform.lossyScale.x,
+                        transform.position.y);
+                    combo.GetComponent<Attack1Script>().velx = 
+                        Mathf.Abs(combo.GetComponent<Attack1Script>().velx);
+                }
+                else
+                {
+                    combo.transform.position = new Vector2(
+                        transform.position.x,
+                        transform.position.y);
+                    combo.GetComponent<Attack1Script>().velx =
+                        -Mathf.Abs(combo.GetComponent<Attack1Script>().velx);
                 }
 
+                attackStartTime = Time.time;
 			}
 
             //Apply movement
@@ -234,7 +262,6 @@ public class PlayerController : MonoBehaviour
                 if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) < rateOfStopping)
                 {
                     GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
-                    print("final stop");
                 }
                 else if(GetComponent<Rigidbody2D>().velocity.x <= 0)
                 {

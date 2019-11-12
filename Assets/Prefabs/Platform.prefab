@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 331105350871090224}
   - component: {fileID: 331105350871090227}
   - component: {fileID: 331105350871090229}
-  - component: {fileID: 331105350871090190}
   - component: {fileID: 1526819956430110048}
+  - component: {fileID: 7434883976569264904}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Solid
@@ -122,32 +122,6 @@ MonoBehaviour:
   magicForceNumber: 50.8
   speed: 5
   currentGoalPoint: 1
---- !u!61 &331105350871090190
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331105350871090228}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0387125, y: 2.60675}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 50, y: 20}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 23.06027, y: 1.2510357}
-  m_EdgeRadius: 0
 --- !u!60 &1526819956430110048
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +133,7 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -236,3 +210,21 @@ PolygonCollider2D:
       - {x: 7.3748474, y: -1.6483517}
       - {x: 8.107449, y: -0.94017094}
       - {x: 8.131868, y: -0.94017094}
+--- !u!252 &7434883976569264904
+SurfaceEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331105350871090228}
+  m_Enabled: 1
+  m_UseColliderMask: 0
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Speed: 19
+  m_SpeedVariation: 0
+  m_ForceScale: 1
+  m_UseContactForce: 0
+  m_UseFriction: 1
+  m_UseBounce: 1
