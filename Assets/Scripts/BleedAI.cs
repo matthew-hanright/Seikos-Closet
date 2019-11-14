@@ -20,11 +20,23 @@ public class BleedAI : ParentEnemy
     private float stunnedTime;
     private float stunnedLength = 0.9f;
 
+    public Sprite[] moving;
+    private int currentFrame = 0;
+    private float frameStartTime;
+    public float frameRate = 0.12f;
+
+    private float startTime;
+    public float resetTime = 5f;
+    private bool shouldReset = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
         startingLocation = transform.position;
         GetComponent<SpriteRenderer>().enabled = false;
+        frameStartTime = Time.time;
+        GetComponent<SpriteRenderer>().sprite = moving[currentFrame];
     }
 
     void FixedUpdate()
@@ -43,12 +55,22 @@ public class BleedAI : ParentEnemy
         }
         else if(isRunning)
         {
-            if (Mathf.Abs(Mathf.Round(GetComponent<Rigidbody2D>().velocity.x)) < runSpeed - 2.0f)
+            if(Time.time > frameStartTime + frameRate)
             {
-                if (isGrounded)
+                currentFrame++;
+                if(currentFrame > moving.Length - 1)
                 {
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(goalDirection.x * runSpeed, jumpForce));
+                    currentFrame = 0;
                 }
+                frameStartTime = Time.time;
+                GetComponent<SpriteRenderer>().sprite = moving[currentFrame];
+            }
+            if (isGrounded)
+            {
+                currentFrame = 0;
+                frameStartTime = Time.time;
+                GetComponent<SpriteRenderer>().sprite = moving[currentFrame];
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(goalDirection.x * runSpeed, jumpForce));
             }
             if (!firstJump)
             {
@@ -65,6 +87,10 @@ public class BleedAI : ParentEnemy
                 GetComponent<Rigidbody2D>().velocity = new Vector2(-runSpeed, GetComponent<Rigidbody2D>().velocity.y);
                 goalDirection = Vector2.left;
             }
+        }
+        if(shouldReset && Time.time > startTime + resetTime)
+        {
+            Reset();
         }
     }
 
@@ -83,13 +109,19 @@ public class BleedAI : ParentEnemy
                 firstJump = true;
             }
         }
+        if(collision.tag == "MainCamera")
+        {
+            shouldReset = false;
+        }
     }
 
     public void OnPlayerEnter()
     {
         GetComponent<SpriteRenderer>().enabled = true;
         isHiding = false;
+        shouldReset = true;
         GetComponent<Rigidbody2D>().gravityScale = fallSpeed;
+        startTime = Time.time;
     }
 
     public void OnTExit(Collider2D collision)
@@ -129,16 +161,24 @@ public class BleedAI : ParentEnemy
             {
                 print("Out up");
             }*/
-            isRunning = false;
-            isHiding = true;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-            GetComponent<SpriteRenderer>().enabled = false;
-            transform.position = startingLocation;
-            firstJump = false;
-            isStunned = false;
-            GetComponentInChildren<BleedTriggerController>().restart();
-            GetComponentInChildren<AIGrounding>().groundingCollisions = 0;
+            Reset();
         }
+    }
+
+    private void Reset()
+    {
+        isRunning = false;
+        isHiding = true;
+        isGrounded = false;
+        GetComponentInChildren<AIGrounding>().groundingCollisions = 0;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        GetComponent<SpriteRenderer>().enabled = false;
+        transform.position = startingLocation;
+        firstJump = false;
+        isStunned = false;
+        shouldReset = false;
+        GetComponentInChildren<AIGrounding>().groundingCollisions = 0;
+        GetComponentInChildren<BleedTriggerController>().restart();
     }
 }

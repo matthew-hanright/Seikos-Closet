@@ -10,7 +10,8 @@ public class ParentEnemy : MonoBehaviour
     public int damage = 1;
     public bool isGrounded = false;
 
-    public float knockback = 30000;
+    public float knockbackX = 300;
+    public float knockbackY = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -34,12 +35,12 @@ public class ParentEnemy : MonoBehaviour
             if (collision.transform.position.x < transform.position.x)
             {
                 collision.gameObject.GetComponent<PlayerController>().takeDamage(damage, 
-                    new Vector2(-knockback, knockback));
+                    new Vector2(-knockbackX, knockbackY));
             }
             else
             {
                 collision.gameObject.GetComponent<PlayerController>().takeDamage(damage, 
-                    new Vector2(knockback, knockback));
+                    new Vector2(knockbackX, knockbackY));
             }
         }
     }
@@ -51,12 +52,12 @@ public class ParentEnemy : MonoBehaviour
             if (collision.transform.position.x < transform.position.x)
             {
                 collision.gameObject.GetComponent<PlayerController>().takeDamage(damage,
-                    new Vector2(-knockback, knockback));
+                    new Vector2(-knockbackX, knockbackY));
             }
             else
             {
                 collision.gameObject.GetComponent<PlayerController>().takeDamage(damage,
-                    new Vector2(knockback, knockback));
+                    new Vector2(knockbackX, knockbackY));
             }
         }
     }

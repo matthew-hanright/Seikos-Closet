@@ -7,10 +7,11 @@ public class CameraController : MonoBehaviour
     public GameObject player;
     private float XBounds = 3f;
     private float YMin = 3f;
-    private float YMax = 0.5f;
+    private float YMax = 10f;
     private float XDivisor = 0.5f;
-    private float YDivisor = 1.5f;
-    private float radius = 1;
+    private float YDownDivisor = 1.5f;
+    public float YUpDivisor = 1.0f;
+    private float radius = 2;
     private float downRadius = 3;
     private float YOffset;
 
@@ -22,14 +23,10 @@ public class CameraController : MonoBehaviour
     private bool tooFarHorizontal = false;
     private bool tooFarVertical = false;
 
-    public Vector3 FINAL_POSITION;
-    public Vector3 FINAL_SCALE;
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = FINAL_POSITION;
-        transform.localScale = FINAL_SCALE;
-        GetComponent<Camera>().orthographicSize = 23.52861f;
+
     }
 
     // Update is called once per frame
@@ -69,7 +66,7 @@ public class CameraController : MonoBehaviour
                 tooFarVertical = true;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(
                     GetComponent<Rigidbody2D>().velocity.x,
-                    (-Mathf.Pow(((transform.position.y - player.transform.position.y) / (YDivisor * 1.7f)),
+                    (-Mathf.Pow(((transform.position.y - player.transform.position.y) / (YDownDivisor * 1.7f)),
                     2)) * ySpeedMultiplier);
             }
             else if (Mathf.Round(player.transform.position.y) > Mathf.Round(transform.position.y + YMax))
@@ -77,7 +74,7 @@ public class CameraController : MonoBehaviour
                 tooFarVertical = true;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(
                     GetComponent<Rigidbody2D>().velocity.x,
-                    (Mathf.Pow(((player.transform.position.y - transform.position.y) / YDivisor),
+                    (Mathf.Pow(((player.transform.position.y - transform.position.y) / YUpDivisor),
                     2)) * ySpeedMultiplier);
             }
             else if (player.transform.position.y - transform.position.y < radius && player.transform.position.y > transform.position.y)

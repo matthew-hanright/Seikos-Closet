@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 846154772}
   m_Layer: 0
   m_Name: Chatter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,6 +227,8 @@ MonoBehaviour:
   health: 30
   damage: 1
   isGrounded: 0
+  knockbackX: 100
+  knockbackY: 70
   movingLeft: 1
   moveSpeed: 12
   runSpeed: 30

@@ -14,14 +14,21 @@ public class PlayerController : MonoBehaviour
     public GameObject attack2;
     public GameObject attack3;
     public GameObject[] attacks = new GameObject[3];
-    public float maxSpeed = 7;
-    public float takeOffSpeed = 7;
-    public float maxJumpHeight = 10;
-    public float gravity = 0.01f;
+    public static float maxSpeed = 35;
+    private float currentSpeed = maxSpeed;
+    public float rateOfStopping = 8;
+    public float takeOffSpeed = 35;
+    public float maxJumpHeight = 80;
+    public float gravity = 10;
+    public float maxFallSpeed = -80;
     public bool canControl = true;
-    public float invincibilityLength = 0.2f;
+    public float invincibilityLength = 2;
     public float regenLength = 1f;
     public int regenAmount = 2;
+
+    private bool lookingRight = true;
+    private float attackStartTime;
+    public float attackDelay = 0.5f;
 
     public int health = MAX_HEALTH;
 	public int shield = MAX_SHIELD;
@@ -35,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private float timeOfHit;
     private float timeOfRegen;
 
-    public Sprite neutral;
     public Sprite[] walking;
     private int walkingSubSprite = 0;
     private float frameRate = 0.12f;
@@ -54,6 +60,8 @@ public class PlayerController : MonoBehaviour
         UIDungeon = FindObjectOfType<UIDungeonScript>();
         UIDungeon.GrabHealth(health);
         UIDungeon.GrabShield(shield);
+
+        attackStartTime = Time.time;
     }
 
     // Update is called once per frame
@@ -128,10 +136,21 @@ public class PlayerController : MonoBehaviour
             move.x = Input.GetAxis("Horizontal");
             if (Mathf.Abs(move.x) < maxSpeed)
             {
-                move.x = Input.GetAxis("Horizontal") * maxSpeed;
+                move.x = Input.GetAxis("Horizontal") * currentSpeed;
                 GetComponent<SpriteRenderer>().sprite = walking[walkingSubSprite];
                 isWalking = true;
             }
+
+            //Determine if looking right
+            if(Input.GetAxis("Horizontal") < -0.2f)
+            {
+                lookingRight = false;
+            }
+            else if(Input.GetAxis("Horizontal") > 0.2f)
+            {
+                lookingRight = true;
+            }
+
             if (move.x < 0)
             {
                 if (transform.localScale.x > 0)
@@ -157,7 +176,6 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                GetComponent<SpriteRenderer>().sprite = neutral;
                 isWalking = false;
             }
 
@@ -167,7 +185,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetAxis("Vertical") > 0)
                 {
                     isJumping = true;
-                    move.y += takeOffSpeed;
+                    move.y = takeOffSpeed;
                 }
                 else
                 {
@@ -179,6 +197,10 @@ public class PlayerController : MonoBehaviour
                 if (move.y < maxJumpHeight)
                 {
                     move.y += takeOffSpeed;
+                    if(move.y > maxJumpHeight)
+                    {
+                        move.y = maxJumpHeight;
+                    }
                     
                 }
                 else
@@ -194,39 +216,66 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            //Attack 1
+            if (Input.GetButtonDown("Fire1") && Time.time > attackStartTime + attackDelay)
             {
                 GameObject combo = Instantiate(attacks[0]) as GameObject;
-                combo.transform.position = new Vector2(transform.position.x + 0.16f, transform.position.y);
-                if (move.x < 0)
+                if (lookingRight)
                 {
-                    combo.GetComponent<Attack1Script>().velx *= -1;
+                    combo.transform.position = new Vector2(
+                        transform.position.x + transform.lossyScale.x,
+                        transform.position.y);
+                    combo.GetComponent<Attack1Script>().velx = 
+                        Mathf.Abs(combo.GetComponent<Attack1Script>().velx);
+                }
+                else
+                {
+                    combo.transform.position = new Vector2(
+                        transform.position.x,
+                        transform.position.y);
+                    combo.GetComponent<Attack1Script>().velx =
+                        -Mathf.Abs(combo.GetComponent<Attack1Script>().velx);
                 }
 
+                attackStartTime = Time.time;
 			}
 
             //Apply movement
             if(move.x > 0 && GetComponent<Rigidbody2D>().velocity.x < move.x)
-            GetComponent<Rigidbody2D>().velocity = new Vector2(
-                GetComponent<Rigidbody2D>().velocity.x + move.x,
-                GetComponent<Rigidbody2D>().velocity.y + move.y);
+            {
+                GetComponent<Rigidbody2D>().velocity += new Vector2(move.x, 0.0f);
+            }
+            else if(move.x < 0 && GetComponent<Rigidbody2D>().velocity.x > move.x)
+            {
+                GetComponent<Rigidbody2D>().velocity += new Vector2(move.x, 0.0f);
+            }
+            if (move.y > 0 && GetComponent<Rigidbody2D>().velocity.y < move.y)
+            {
+                GetComponent<Rigidbody2D>().velocity += new Vector2(0.0f, move.y);
+            }
+            else if (move.y < 0 && GetComponent<Rigidbody2D>().velocity.y > maxFallSpeed)
+            {
+                GetComponent<Rigidbody2D>().velocity += new Vector2(0.0f, move.y);
+            }
+            if(move.x < maxSpeed)
+            {
+                if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) < rateOfStopping)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
+                }
+                else if(GetComponent<Rigidbody2D>().velocity.x <= 0)
+                {
+                    GetComponent<Rigidbody2D>().velocity += new Vector2(rateOfStopping, 0.0f);
+                }
+                else
+                {
+                    GetComponent<Rigidbody2D>().velocity -= new Vector2(rateOfStopping, 0.0f);
+                }
+            }
         }
         else
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (((collision.gameObject.tag == "Solid" && 
-            collision.gameObject.layer != 11) ||
-            collision.gameObject.tag == "Enemy") &&
-            collision.gameObject.transform.position.y > transform.position.y)
-        {
-            isJumping = false;
-            move.y = 0;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
         }
     }
 
@@ -257,10 +306,15 @@ public class PlayerController : MonoBehaviour
             }
             isInvincible = true;
             timeOfHit = Time.time;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(
-                GetComponent<Rigidbody2D>().velocity.x + knockback.x,
-                GetComponent<Rigidbody2D>().velocity.y + knockback.y);
-            print("got knockbacked, velocity: " + GetComponent<Rigidbody2D>().velocity);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(knockback.x, knockback.y);
+            currentSpeed = maxSpeed / 1.75f;
+        }
+        else if (isInvincible)
+        {
+            if(currentSpeed < maxSpeed)
+            {
+                currentSpeed = maxSpeed;
+            }
         }
     }
 }
