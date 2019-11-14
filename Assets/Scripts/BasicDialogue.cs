@@ -7,7 +7,7 @@ public class BasicDialogue : MonoBehaviour
 {
     public PlayerController player;
     public Text DialogeBox;
-    private string[] text;
+    public string[] text;
     private int i;
     private bool haveControl = false;
     private bool giveControl = false;
