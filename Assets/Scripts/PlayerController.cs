@@ -10,12 +10,9 @@ public class PlayerController : MonoBehaviour
     public static int MAX_SHIELD = 100;
 
     public GameObject player;
-    public GameObject attack1;
-    public GameObject attack2;
-    public GameObject attack3;
     public GameObject[] attacks = new GameObject[3];
-    public static float maxSpeed = 35;
-    private float currentSpeed = maxSpeed;
+    public float maxSpeed = 35;
+    private float currentSpeed;
     public float rateOfStopping = 8;
     public float takeOffSpeed = 35;
     public float maxJumpHeight = 80;
@@ -26,9 +23,7 @@ public class PlayerController : MonoBehaviour
     public float regenLength = 1f;
     public int regenAmount = 2;
 
-    private bool lookingRight = true;
-    private float attackStartTime;
-    public float attackDelay = 0.5f;
+    public bool lookingRight = true;
 
     public int health = MAX_HEALTH;
 	public int shield = MAX_SHIELD;
@@ -43,25 +38,28 @@ public class PlayerController : MonoBehaviour
     private float timeOfRegen;
 
     public Sprite[] walking;
-    private int walkingSubSprite = 0;
-    private float frameRate = 0.12f;
+    private int currentFrame = 0;
+    private float walkingFrameRate = 0.12f;
     private float frameStartTime;
+
+    public Sprite[] attack1Seiko;
+    public Sprite[] attack1Sprite;
+    private float attackFrameRate = 0.12f;
+    private bool isAttacking = false;
+
+    private float magicMeleeDistance = 8f;
 
     private UIDungeonScript UIDungeon;
 	
     // Start is called before the first frame update
     void Start()
     {
+        currentSpeed = maxSpeed;
         player = this.gameObject;
-        attacks[0] = attack1;
-        attacks[1] = attack2;
-        attacks[2] = attack3;
         frameStartTime = Time.time;
         UIDungeon = FindObjectOfType<UIDungeonScript>();
         UIDungeon.GrabHealth(health);
         UIDungeon.GrabShield(shield);
-
-        attackStartTime = Time.time;
     }
 
     // Update is called once per frame
@@ -109,20 +107,38 @@ public class PlayerController : MonoBehaviour
 
     private void OnGUI()
     {
-        if (isWalking && canControl)
+        if (isWalking && canControl && !isAttacking)
         {
-            if (Time.time >= frameStartTime + frameRate)
+            if (Time.time >= frameStartTime + walkingFrameRate)
             {
-                if (walkingSubSprite < walking.Length - 1)
+                if (currentFrame < walking.Length - 1)
                 {
-                    walkingSubSprite += 1;
+                    currentFrame += 1;
                 }
                 else
                 {
-                    walkingSubSprite = 0;
+                    currentFrame = 0;
                 }
                 frameStartTime = Time.time;
-                GetComponent<SpriteRenderer>().sprite = walking[walkingSubSprite];
+                GetComponent<SpriteRenderer>().sprite = walking[currentFrame];
+            }
+        }
+        else if (canControl && isAttacking)
+        {
+            if (Time.time > frameStartTime + attackFrameRate)
+            {
+                currentFrame++;
+                frameStartTime = Time.time;
+                if (currentFrame > attack1Seiko.Length - 1)
+                {
+                    currentFrame = 0;
+                    GetComponent<SpriteRenderer>().sprite = walking[currentFrame];
+                    isAttacking = false;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+                }
             }
         }
     }
@@ -137,7 +153,6 @@ public class PlayerController : MonoBehaviour
             if (Mathf.Abs(move.x) < maxSpeed)
             {
                 move.x = Input.GetAxis("Horizontal") * currentSpeed;
-                GetComponent<SpriteRenderer>().sprite = walking[walkingSubSprite];
                 isWalking = true;
             }
 
@@ -155,23 +170,17 @@ public class PlayerController : MonoBehaviour
             {
                 if (transform.localScale.x > 0)
                 {
-                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
+                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1.0f);
                     //Swap which side the interact box is on when the player changes which direction
                     //they are facing
-                    GetComponentInChildren<BoxCollider2D>().offset = new Vector2(
-                        GetComponentInChildren<BoxCollider2D>().offset.x * -1,
-                        GetComponentInChildren<BoxCollider2D>().offset.y);
                 }
             }
             else if (move.x > 0)
             {
                 if (transform.localScale.x < 0)
                 {
-                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y);
-                    //Flip the interact box as well
-                    GetComponentInChildren<BoxCollider2D>().offset = new Vector2(
-                        GetComponentInChildren<BoxCollider2D>().offset.x * -1,
-                        GetComponentInChildren<BoxCollider2D>().offset.y);
+                    transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1.0f);
+                    //Flip the interact box as well 
                 }
             }
             else
@@ -217,28 +226,86 @@ public class PlayerController : MonoBehaviour
             }
 
             //Attack 1
-            if (Input.GetButtonDown("Fire1") && Time.time > attackStartTime + attackDelay)
+            if (Input.GetButtonDown("Fire1") && !isAttacking)
             {
                 GameObject combo = Instantiate(attacks[0]) as GameObject;
-                if (lookingRight)
-                {
-                    combo.transform.position = new Vector2(
-                        transform.position.x + transform.lossyScale.x,
-                        transform.position.y);
-                    combo.GetComponent<Attack1Script>().velx = 
-                        Mathf.Abs(combo.GetComponent<Attack1Script>().velx);
-                }
-                else
+                if (Input.GetAxis("Look Up") > 0.1)
                 {
                     combo.transform.position = new Vector2(
                         transform.position.x,
-                        transform.position.y);
-                    combo.GetComponent<Attack1Script>().velx =
-                        -Mathf.Abs(combo.GetComponent<Attack1Script>().velx);
+                        transform.position.y + magicMeleeDistance);
+                    if (lookingRight)
+                    {
+                        combo.transform.localScale = new Vector2(Mathf.Abs(combo.transform.localScale.x), combo.transform.localScale.y);
+                    }
+                }
+                else
+                {
+                    if (lookingRight)
+                    {
+                        combo.transform.position = new Vector2(
+                            transform.position.x + magicMeleeDistance,
+                            transform.position.y);
+                        if (lookingRight)
+                        {
+                            combo.transform.localScale = new Vector2(Mathf.Abs(combo.transform.localScale.x), combo.transform.localScale.y);
+                        }
+                    }
+                    else
+                    {
+                        combo.transform.position = new Vector2(
+                            transform.position.x - magicMeleeDistance,
+                            transform.position.y);
+                        if (lookingRight)
+                        {
+                            combo.transform.localScale = new Vector2(Mathf.Abs(combo.transform.localScale.x), combo.transform.localScale.y);
+                        }
+                    }
+                }
+                combo.transform.parent = transform;
+
+                isAttacking = true;
+                currentFrame = 0;
+                frameStartTime = Time.time;
+                GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+            }
+
+            //Attack 2
+            if (Input.GetButtonDown("Fire2") && !isAttacking)
+            {
+                GameObject combo = Instantiate(attacks[1]) as GameObject;
+                if (Input.GetAxis("Look Up") > 0.1)
+                {
+                    combo.transform.position = new Vector2(
+                        transform.position.x,
+                        transform.position.y + transform.lossyScale.y);
+                    combo.GetComponent<Attack1Script>().GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, combo.GetComponent<Attack1Script>().speed);
+                }
+                else
+                {
+                    if (lookingRight)
+                    {
+                        combo.transform.position = new Vector2(
+                            transform.position.x + transform.lossyScale.x,
+                            transform.position.y);
+                        combo.GetComponent<Attack1Script>().GetComponent<Rigidbody2D>().velocity = new Vector2(
+                            combo.GetComponent<Attack1Script>().speed, 0.0f);
+                    }
+                    else
+                    {
+                        combo.transform.position = new Vector2(
+                            transform.position.x,
+                            transform.position.y);
+                        combo.GetComponent<Attack1Script>().GetComponent<Rigidbody2D>().velocity = new Vector2(
+                            -combo.GetComponent<Attack1Script>().speed, 0.0f);
+                    }
                 }
 
-                attackStartTime = Time.time;
-			}
+                isAttacking = true;
+                currentFrame = 0;
+                frameStartTime = Time.time;
+                GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+            }
 
             //Apply movement
             if(move.x > 0 && GetComponent<Rigidbody2D>().velocity.x < move.x)
@@ -277,6 +344,14 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
         }
+        /*
+        if (isInvincible)
+        {
+            if (currentSpeed < maxSpeed)
+            {
+                currentSpeed = maxSpeed;
+            }
+        }*/
     }
 
     public void takeDamage(int damage, Vector2 knockback)
@@ -307,14 +382,7 @@ public class PlayerController : MonoBehaviour
             isInvincible = true;
             timeOfHit = Time.time;
             GetComponent<Rigidbody2D>().velocity = new Vector2(knockback.x, knockback.y);
-            currentSpeed = maxSpeed / 1.75f;
-        }
-        else if (isInvincible)
-        {
-            if(currentSpeed < maxSpeed)
-            {
-                currentSpeed = maxSpeed;
-            }
+            //currentSpeed = maxSpeed / 1.75f;
         }
     }
 }

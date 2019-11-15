@@ -148,12 +148,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cece745128cd85842b666bcf377b7fa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1c03461e6badf7c46a881cda4a5ba69a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12.5, y: 18}
+  m_Size: {x: 9.76, y: 18.500002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -228,11 +228,18 @@ MonoBehaviour:
   damage: 1
   isGrounded: 0
   knockbackX: 100
-  knockbackY: 70
+  knockbackY: 50
   movingLeft: 1
   moveSpeed: 12
   runSpeed: 30
   seesPlayer: 0
+  activeVision: {fileID: 0}
+  moving:
+  - {fileID: 21300000, guid: 1c03461e6badf7c46a881cda4a5ba69a, type: 3}
+  - {fileID: 21300002, guid: 1c03461e6badf7c46a881cda4a5ba69a, type: 3}
+  - {fileID: 21300004, guid: 1c03461e6badf7c46a881cda4a5ba69a, type: 3}
+  - {fileID: 21300006, guid: 1c03461e6badf7c46a881cda4a5ba69a, type: 3}
+  - {fileID: 21300008, guid: 1c03461e6badf7c46a881cda4a5ba69a, type: 3}
 --- !u!70 &7221820106126728271
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

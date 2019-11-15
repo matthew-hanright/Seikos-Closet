@@ -23,6 +23,11 @@ public class InteractBoxController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         

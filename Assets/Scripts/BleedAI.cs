@@ -26,7 +26,7 @@ public class BleedAI : ParentEnemy
     public float frameRate = 0.12f;
 
     private float startTime;
-    public float resetTime = 5f;
+    public float resetTime = 2f;
     private bool shouldReset = false;
 
     // Start is called before the first frame update
@@ -44,6 +44,7 @@ public class BleedAI : ParentEnemy
         if(isHiding)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         else if(isStunned)
         {
@@ -171,7 +172,6 @@ public class BleedAI : ParentEnemy
         isHiding = true;
         isGrounded = false;
         GetComponentInChildren<AIGrounding>().groundingCollisions = 0;
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         transform.position = startingLocation;
@@ -180,5 +180,6 @@ public class BleedAI : ParentEnemy
         shouldReset = false;
         GetComponentInChildren<AIGrounding>().groundingCollisions = 0;
         GetComponentInChildren<BleedTriggerController>().restart();
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 }
