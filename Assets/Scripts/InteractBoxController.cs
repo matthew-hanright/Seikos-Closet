@@ -31,12 +31,14 @@ public class InteractBoxController : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         //If can interact, is not currently interacting with anything, and the object can be interacted with
-        if (canInteract && GetComponentInParent<PlayerController>().canControl && other.GetComponent<Interactable>())
+        if (canInteract && GetComponentInParent<PlayerController>().canControl && other.GetComponent<DialogueTrigger>())
         {
             if (Input.GetAxis("Interact") > 0.5) 
             {
+                Debug.Log("Checkpoint1");
                 //Call the object's dialogue, and the player can no longer interact, i.e. begin another dialogue
-                other.GetComponent<Interactable>().DisplayText(GetComponentInParent<BasicDialogue>());
+                other.GetComponent<DialogueTrigger>().conditionMet = true;
+                other.GetComponent<DialogueTrigger>().TriggerDialogue();
                 canInteract = false;
             }
         }

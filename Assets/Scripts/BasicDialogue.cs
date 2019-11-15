@@ -11,12 +11,12 @@ public class BasicDialogue : MonoBehaviour
     private int i;
     private bool haveControl = false;
     private bool giveControl = false;
-
     private bool goNext = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        DialogeBox.gameObject.SetActive(false);
+        //DialogeBox.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,6 +48,9 @@ public class BasicDialogue : MonoBehaviour
         }
     }
 
+   
+    
+    
     void UpdateText()
     {
         //If possible, display the requested dialogue
@@ -64,6 +67,7 @@ public class BasicDialogue : MonoBehaviour
             haveControl = false;
         }
     }
+    
 
     //This function is called first, and begins the dialogue
     public void ShowText(string[] text, int startIndex)
@@ -87,4 +91,5 @@ public class BasicDialogue : MonoBehaviour
             haveControl = false;
         }
     }
+    
 }

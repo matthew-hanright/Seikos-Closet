@@ -81,11 +81,11 @@
     <Compile Include="Assets\Scripts\PlatformMove.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerGrounding.cs" />
-    <Compile Include="Assets\Scripts\ScriptDialogue.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Act1Scene1.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Test\Dialogue.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Test\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Test\DialogueTrigger.cs" />
+    <Compile Include="Assets\Scripts\Story Scripts\Test\StoryDriver.cs" />
     <Compile Include="Assets\Scripts\UIDungeonScript.cs" />
     <Compile Include="Assets\Scripts\Win.cs" />
     <None Include="Assets\Fonts\Noah\OFL.txt" />
