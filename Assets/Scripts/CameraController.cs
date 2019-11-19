@@ -5,23 +5,25 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
-    private float XBounds = 3f;
-    private float YMin = 3f;
-    private float YMax = 10f;
+
+    private Vector2 TrackingPoint;
+
+    private float XBounds = 0f;
+    private float YMin = 0f;
+    public float YMax = 0f;
     private float XDivisor = 0.5f;
     private float YDownDivisor = 1.5f;
-    public float YUpDivisor = 1.0f;
+    private float YUpDivisor = 5f;
     private float radius = 2;
-    private float downRadius = 3;
-    private float YOffset;
+    private float downRadius = 0;
 
     public float xSpeedMultiplier = 1;
     public float ySpeedMultiplier = 1;
 
     public bool followPlayer = true;
     public bool needToChangeLayer = false;
-    private bool tooFarHorizontal = false;
-    private bool tooFarVertical = false;
+
+    private float maxYSpeed = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,69 +39,71 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        TrackingPoint = player.GetComponent<PlayerController>().GetPosition();
         if (followPlayer)
         {
             //Player moves too far to the sides
-            if (Mathf.Round(player.transform.position.x) < Mathf.Round(transform.position.x - XBounds))
+            if (Mathf.Round(TrackingPoint.x) < Mathf.Round(transform.position.x - XBounds))
             {
-                tooFarHorizontal = true;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(
-                    ((player.transform.position.x - transform.position.x) / XDivisor) * xSpeedMultiplier,
+                    (-(transform.position.x - TrackingPoint.x) / XDivisor) * xSpeedMultiplier,
                     GetComponent<Rigidbody2D>().velocity.y);
             }
-            else if (Mathf.Round(player.transform.position.x) > Mathf.Round(transform.position.x + XBounds))
+            else if (Mathf.Round(TrackingPoint.x) > Mathf.Round(transform.position.x + XBounds))
             {
-                tooFarHorizontal = true;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(
-                    (-(transform.position.x - player.transform.position.x) / XDivisor) * xSpeedMultiplier,
+                    (-(transform.position.x - TrackingPoint.x) / XDivisor) * xSpeedMultiplier,
                     GetComponent<Rigidbody2D>().velocity.y);
             }
-            else if (Mathf.Abs(player.transform.position.x - transform.position.x) < radius)
+            else if (Mathf.Abs(TrackingPoint.x - transform.position.x) < radius)
             { //If the player is within the bounds, stop moving along x
-                tooFarHorizontal = false;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
             }
 
             //Player moves too far vertically
-            if (Mathf.Round(player.transform.position.y) < Mathf.Round(transform.position.y - YMin))
+            if (Mathf.Round(TrackingPoint.y) < Mathf.Round(transform.position.y - YMin))
             {
-                tooFarVertical = true;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(
                     GetComponent<Rigidbody2D>().velocity.x,
-                    (-Mathf.Pow(((transform.position.y - player.transform.position.y) / (YDownDivisor * 1.7f)),
+                    (-Mathf.Pow(((transform.position.y - TrackingPoint.y) / (YDownDivisor * 1.7f)),
                     2)) * ySpeedMultiplier);
-            }
-            else if (Mathf.Round(player.transform.position.y) > Mathf.Round(transform.position.y + YMax))
-            {
-                tooFarVertical = true;
-                GetComponent<Rigidbody2D>().velocity = new Vector2(
-                    GetComponent<Rigidbody2D>().velocity.x,
-                    (Mathf.Pow(((player.transform.position.y - transform.position.y) / YUpDivisor),
-                    2)) * ySpeedMultiplier);
-            }
-            else if (player.transform.position.y - transform.position.y < radius && player.transform.position.y > transform.position.y)
-            { //If the player is within the bounds, stop moving along y
-                tooFarVertical = false;
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
-                if (YOffset == float.NaN)
-                {
-                    YOffset = transform.position.y - player.transform.position.y;
-                }
-            }
-            else if (transform.position.y - player.transform.position.y < downRadius)
-            {
-                tooFarVertical = false;
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
-                if (YOffset == float.NaN)
-                {
-                    YOffset = transform.position.y - player.transform.position.y;
-                }
-            }
 
-            if(!tooFarHorizontal && !tooFarVertical && needToChangeLayer)
+                if(GetComponent<Rigidbody2D>().velocity.y > maxYSpeed)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(
+                        GetComponent<Rigidbody2D>().velocity.x, maxYSpeed);
+                }
+                else if(GetComponent<Rigidbody2D>().velocity.y < -maxYSpeed)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(
+                        GetComponent<Rigidbody2D>().velocity.x, -maxYSpeed);
+                }
+            }
+            else if (Mathf.Round(TrackingPoint.y) > Mathf.Round(transform.position.y + YMax))
             {
-                gameObject.layer = 10;
-                needToChangeLayer = false;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(
+                    GetComponent<Rigidbody2D>().velocity.x,
+                    (Mathf.Pow(((TrackingPoint.y - transform.position.y) / YUpDivisor),
+                    2)) * ySpeedMultiplier);
+
+                if (GetComponent<Rigidbody2D>().velocity.y > maxYSpeed)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(
+                        GetComponent<Rigidbody2D>().velocity.x, maxYSpeed);
+                }
+                else if (GetComponent<Rigidbody2D>().velocity.y < -maxYSpeed)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(
+                        GetComponent<Rigidbody2D>().velocity.x, -maxYSpeed);
+                }
+            }
+            else if (TrackingPoint.y - transform.position.y < radius && TrackingPoint.y > transform.position.y)
+            { //If the player is within the bounds, stop moving along y
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
+            }
+            else if (transform.position.y - TrackingPoint.y < downRadius)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
             }
         }
     }

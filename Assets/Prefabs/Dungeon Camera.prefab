@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031440735, y: 0}
+  m_Offset: {x: 0.03143692, y: 0.077804565}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 57.8171, y: 46.691376}
+  m_Size: {x: 46.41146, y: 46.846985}
   m_EdgeRadius: 0
 --- !u!1 &4451605333436877912
 GameObject:
@@ -74,7 +74,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4451605333436877913
 RectTransform:
   m_ObjectHideFlags: 0
@@ -83,15 +83,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4451605333436877912}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 139}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 137}
+  m_LocalScale: {x: 2.406215, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4451605334380832501}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000038146973, y: -484}
+  m_AnchoredPosition: {x: -6, y: -388.99997}
   m_SizeDelta: {x: 93.8, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4451605333436877915
@@ -128,14 +128,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Default text
 --- !u!1 &4451605333525252224
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,14 +163,14 @@ RectTransform:
   m_GameObject: {fileID: 4451605333525252224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 139}
-  m_LocalScale: {x: 1, y: 0.15, z: 1}
+  m_LocalScale: {x: 1.5554461, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 4451605334380832501}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 41.200012, y: -484}
+  m_AnchoredPosition: {x: 1.0001221, y: -389}
   m_SizeDelta: {x: -96.9, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4451605333525252227
@@ -201,8 +201,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -236,15 +236,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4451605333600169420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 139}
-  m_LocalScale: {x: 3, y: 3, z: 1.0000106}
+  m_LocalPosition: {x: 0, y: 0, z: 137}
+  m_LocalScale: {x: 2.06247, y: 3, z: 1.0000106}
   m_Children: []
   m_Father: {fileID: 4451605334380832501}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 615, y: -484}
+  m_AnchoredPosition: {x: 321.11203, y: -389}
   m_SizeDelta: {x: 93.8, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4451605333600169423
@@ -288,7 +288,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'Health: 0
+
+'
 --- !u!1 &4451605334380832500
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,14 +420,14 @@ RectTransform:
   m_GameObject: {fileID: 4451605334747980554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 139}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2.06247, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 4451605334380832501}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -509, y: -484}
+  m_AnchoredPosition: {x: -321, y: -389}
   m_SizeDelta: {x: 93.8, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4451605334747980557
@@ -469,7 +471,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'Shield: 0'
 --- !u!1 &8941266910013425824
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +573,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0009689331, y: -0.04764557}
+  m_Offset: {x: 0.052827835, y: -0.04764557}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -582,7 +584,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 57.86389, y: 46.92103}
+  m_Size: {x: 46.35065, y: 46.92103}
   m_EdgeRadius: 0
 --- !u!50 &8941266910013425826
 Rigidbody2D:
@@ -618,9 +620,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  YUpDivisor: 4
-  xSpeedMultiplier: 1
-  ySpeedMultiplier: 1
+  XBounds: 0
+  YMin: 0
+  YMax: 0
+  XDivisor: 0.5
+  YDivisor: 1.5
+  YDownDivisor: 1.5
+  YUpDivisor: 5
+  radius: 2
+  downRadius: 0
+  xSpeedMultiplier: 1.5
+  ySpeedMultiplier: 10
   followPlayer: 1
   needToChangeLayer: 0
 --- !u!114 &4451605334540589386

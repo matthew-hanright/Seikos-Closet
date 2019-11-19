@@ -47,6 +47,13 @@ public class InteractBoxController : MonoBehaviour
                 canInteract = false;
             }
         }
+        else if(canInteract && GetComponentInParent<PlayerController>().canControl && other.GetComponent<SavePointController>())
+        {
+            if(Input.GetButtonDown("Interact"))
+            {
+                other.GetComponent<SavePointController>().Save();
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)

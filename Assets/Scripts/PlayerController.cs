@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
     public GameObject[] attacks = new GameObject[3];
     public float maxSpeed = 35;
-    private float currentSpeed;
     public float rateOfStopping = 8;
     public float takeOffSpeed = 35;
     public float maxJumpHeight = 80;
@@ -44,8 +43,14 @@ public class PlayerController : MonoBehaviour
 
     public Sprite[] attack1Seiko;
     public Sprite[] attack1Sprite;
+    public Sprite[] attackUpSeiko;
+    public Sprite[] jump;
     private float attackFrameRate = 0.12f;
+    private float jumpFrameRate = 0.12f;
     private bool isAttacking = false;
+
+    public float lookUpDistance = 5;
+    public float lookDownDistance = 5;
 
     private float magicMeleeDistance = 8f;
 
@@ -54,7 +59,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentSpeed = maxSpeed;
         player = this.gameObject;
         frameStartTime = Time.time;
         UIDungeon = FindObjectOfType<UIDungeonScript>();
@@ -129,15 +133,48 @@ public class PlayerController : MonoBehaviour
             {
                 currentFrame++;
                 frameStartTime = Time.time;
-                if (currentFrame > attack1Seiko.Length - 1)
+                if (Input.GetAxis("Look Up") > 0.1)
                 {
-                    currentFrame = 0;
-                    GetComponent<SpriteRenderer>().sprite = walking[currentFrame];
-                    isAttacking = false;
+                    if (currentFrame > attackUpSeiko.Length - 1)
+                    {
+                        currentFrame = 0;
+                        isAttacking = false;
+                        GetComponent<SpriteRenderer>().sprite = walking[currentFrame];
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().sprite = attackUpSeiko[currentFrame];
+                    }
                 }
                 else
                 {
-                    GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+                    if (currentFrame > attack1Seiko.Length - 1)
+                    {
+                        currentFrame = 0;
+                        isAttacking = false;
+                        GetComponent<SpriteRenderer>().sprite = walking[currentFrame];
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+                    }
+                }
+            }
+        }
+        else if(canControl & isJumping)
+        {
+            if (Time.time > frameStartTime + jumpFrameRate)
+            {
+                currentFrame++;
+                frameStartTime = Time.time;
+                if (currentFrame > jump.Length - 1)
+                {
+                    currentFrame = 0;
+                    GetComponent<SpriteRenderer>().sprite = walking[currentFrame];
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = jump[currentFrame];
                 }
             }
         }
@@ -152,24 +189,15 @@ public class PlayerController : MonoBehaviour
             move.x = Input.GetAxis("Horizontal");
             if (Mathf.Abs(move.x) < maxSpeed)
             {
-                move.x = Input.GetAxis("Horizontal") * currentSpeed;
+                move.x = Input.GetAxis("Horizontal") * maxSpeed;
                 isWalking = true;
-            }
-
-            //Determine if looking right
-            if(Input.GetAxis("Horizontal") < -0.2f)
-            {
-                lookingRight = false;
-            }
-            else if(Input.GetAxis("Horizontal") > 0.2f)
-            {
-                lookingRight = true;
             }
 
             if (move.x < 0)
             {
                 if (transform.localScale.x > 0)
                 {
+                    lookingRight = false;
                     transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1.0f);
                     //Swap which side the interact box is on when the player changes which direction
                     //they are facing
@@ -179,6 +207,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (transform.localScale.x < 0)
                 {
+                    lookingRight = true;
                     transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1.0f);
                     //Flip the interact box as well 
                 }
@@ -193,6 +222,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetAxis("Vertical") > 0)
                 {
+                    currentFrame = 0;
+                    frameStartTime = Time.time;
+                    GetComponent<SpriteRenderer>().sprite = jump[currentFrame];
                     isJumping = true;
                     move.y = takeOffSpeed;
                 }
@@ -233,10 +265,28 @@ public class PlayerController : MonoBehaviour
                 {
                     combo.transform.position = new Vector2(
                         transform.position.x,
-                        transform.position.y + magicMeleeDistance);
+                        transform.position.y + (GetComponent<CapsuleCollider2D>().size.y / 2));
                     if (lookingRight)
                     {
                         combo.transform.localScale = new Vector2(Mathf.Abs(combo.transform.localScale.x), combo.transform.localScale.y);
+                    }
+                    else
+                    {
+                        combo.transform.localScale = new Vector2(-Mathf.Abs(combo.transform.localScale.x), combo.transform.localScale.y);
+                    }
+                }
+                else if(Input.GetAxis("Look Down") > 0.1)
+                {
+                    combo.transform.position = new Vector2(
+                        transform.position.x,
+                        transform.position.y - (GetComponent<CapsuleCollider2D>().size.y / 2));
+                    if (lookingRight)
+                    {
+                        combo.transform.localScale = new Vector2(Mathf.Abs(combo.transform.localScale.x), combo.transform.localScale.y);
+                    }
+                    else
+                    {
+                        combo.transform.localScale = new Vector2(-Mathf.Abs(combo.transform.localScale.x), combo.transform.localScale.y);
                     }
                 }
                 else
@@ -244,7 +294,7 @@ public class PlayerController : MonoBehaviour
                     if (lookingRight)
                     {
                         combo.transform.position = new Vector2(
-                            transform.position.x + magicMeleeDistance,
+                            transform.position.x + (GetComponent<CapsuleCollider2D>().size.x),
                             transform.position.y);
                         if (lookingRight)
                         {
@@ -254,7 +304,7 @@ public class PlayerController : MonoBehaviour
                     else
                     {
                         combo.transform.position = new Vector2(
-                            transform.position.x - magicMeleeDistance,
+                            transform.position.x - (GetComponent<CapsuleCollider2D>().size.x),
                             transform.position.y);
                         if (lookingRight)
                         {
@@ -267,7 +317,14 @@ public class PlayerController : MonoBehaviour
                 isAttacking = true;
                 currentFrame = 0;
                 frameStartTime = Time.time;
-                GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+                if (Input.GetAxis("Look Up") > 0.1)
+                {
+                    GetComponent<SpriteRenderer>().sprite = attackUpSeiko[currentFrame];
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+                }
             }
 
             //Attack 2
@@ -304,7 +361,14 @@ public class PlayerController : MonoBehaviour
                 isAttacking = true;
                 currentFrame = 0;
                 frameStartTime = Time.time;
-                GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+                if (Input.GetAxis("Look Up") > 0.1)
+                {
+                    GetComponent<SpriteRenderer>().sprite = attackUpSeiko[currentFrame];
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
+                }
             }
 
             //Apply movement
@@ -361,14 +425,13 @@ public class PlayerController : MonoBehaviour
             if (shield > 0)
             {
                 shield -= damage;
-                UIDungeon.GrabShield(shield);
                 if (shield < 0)
                 {
                     shield = 0;
                 }
+                UIDungeon.GrabShield(shield);
             }
-            else
-            {
+            if(shield < 0) { 
                 if (health > 0)
                 {
                     health -= 1;
@@ -382,7 +445,25 @@ public class PlayerController : MonoBehaviour
             isInvincible = true;
             timeOfHit = Time.time;
             GetComponent<Rigidbody2D>().velocity = new Vector2(knockback.x, knockback.y);
-            //currentSpeed = maxSpeed / 1.75f;
+        }
+    }
+
+    public Vector2 GetPosition()
+    {
+        if (Input.GetAxis("Look Up") < 0.1)
+        {
+            if (Input.GetAxis("Look Down") < 0.1)
+            {
+                return transform.position;
+            }
+            else
+            {
+                return new Vector2(transform.position.x, transform.position.y - lookDownDistance);
+            }
+        }
+        else
+        {
+            return new Vector2(transform.position.x, transform.position.y + lookUpDistance);
         }
     }
 }

@@ -13,7 +13,7 @@ public class BleedAI : ParentEnemy
 
     private bool isHiding = true;
     private bool isRunning = false;
-    private bool firstJump = false;
+    private bool firstFall = false;
     private bool isStunned = false;
 
     public float jumpForce = 400f;
@@ -73,11 +73,11 @@ public class BleedAI : ParentEnemy
                 GetComponent<SpriteRenderer>().sprite = moving[currentFrame];
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(goalDirection.x * runSpeed, jumpForce));
             }
-            if (!firstJump)
+            /*if (!firstJump)
             {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, jumpForce));
                 firstJump = true;
-            }
+            }*/
             if(player.transform.position.x < transform.position.x)
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector2(runSpeed, GetComponent<Rigidbody2D>().velocity.y);
@@ -103,11 +103,11 @@ public class BleedAI : ParentEnemy
         }
         else if(collision.tag == "Solid")
         {
-            if (!firstJump)
+            if (!firstFall)
             {
                 isStunned = true;
                 stunnedTime = Time.time;
-                firstJump = true;
+                firstFall = true;
             }
         }
         if(collision.tag == "MainCamera")
@@ -175,7 +175,7 @@ public class BleedAI : ParentEnemy
         GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         GetComponent<SpriteRenderer>().enabled = false;
         transform.position = startingLocation;
-        firstJump = false;
+        firstFall = false;
         isStunned = false;
         shouldReset = false;
         GetComponentInChildren<AIGrounding>().groundingCollisions = 0;
