@@ -10,10 +10,23 @@ public class ChatterAI : ParentEnemy
     public bool seesPlayer = false;
     private bool stopMoving = false;
     private bool needToTurn = false;
+
+    public GameObject activeVision;
+
+    public Sprite[] moving;
+    private float frameStartTime;
+    private float minFrameRate = 0.08f;
+    private float maxFrameRate = 0.05f;
+    private float frameRate;
+    private int currentFrame = 0;
     // Start is called before the first frame update
     void Start()
     {
         damage = 5;
+        frameStartTime = Time.time;
+        frameRate = minFrameRate;
+
+        //activeVision.transform.parent = transform;
     }
 
     // Update is called once per frame
@@ -26,7 +39,8 @@ public class ChatterAI : ParentEnemy
         }
         if (health <= 0)
         {
-            Object.Destroy(this.gameObject);
+            Destroy(activeVision);
+            Destroy(this.gameObject);
         }
     }
 
@@ -66,6 +80,26 @@ public class ChatterAI : ParentEnemy
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
             GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+        }
+
+        if(seesPlayer)
+        {
+            frameRate = maxFrameRate;
+        }
+        else
+        {
+            frameRate = minFrameRate;
+        }
+
+        if (Time.time > frameStartTime + frameRate)
+        {
+            currentFrame++;
+            if (currentFrame > moving.Length - 1)
+            {
+                currentFrame = 0;
+            }
+            frameStartTime = Time.time;
+            GetComponent<SpriteRenderer>().sprite = moving[currentFrame];
         }
     }
 

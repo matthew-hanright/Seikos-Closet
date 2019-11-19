@@ -112,7 +112,7 @@ public class CameraMoveRoom : MonoBehaviour
                 {
                     camera.transform.position = new Vector3(
                     camera.transform.position.x,
-                    camera.transform.position.y - camera.GetComponent<BoxCollider2D>().bounds.extents.y,
+                    transform.position.y - camera.GetComponent<BoxCollider2D>().bounds.extents.y,
                     camera.transform.position.z);
                 }
                 else if(collision.transform.position.y > transform.position.y &&
@@ -120,7 +120,7 @@ public class CameraMoveRoom : MonoBehaviour
                 {
                     camera.transform.position = new Vector3(
                     camera.transform.position.x,
-                    camera.transform.position.y + camera.GetComponent<BoxCollider2D>().bounds.extents.y,
+                    transform.position.y + camera.GetComponent<BoxCollider2D>().bounds.extents.y,
                     camera.transform.position.z);
                 }
             }

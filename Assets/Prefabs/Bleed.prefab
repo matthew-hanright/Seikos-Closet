@@ -300,8 +300,8 @@ MonoBehaviour:
   health: 30
   damage: 1
   isGrounded: 0
-  knockbackX: 100
-  knockbackY: 70
+  knockbackX: 50
+  knockbackY: 40
   fallSpeed: 10
   player: {fileID: 0}
   runSpeed: 35

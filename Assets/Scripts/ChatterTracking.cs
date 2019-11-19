@@ -24,7 +24,7 @@ public class ChatterTracking : MonoBehaviour
     {
         if(chatter.GetComponent<ChatterAI>().seesPlayer)
         {
-            if(player.transform.position.x < chatter.transform.position.x)
+            if((player.transform.position.x - chatter.transform.position.x) < -2)
             {
                 if (Mathf.Sign(chatter.transform.localScale.x) == -1)
                 {
@@ -38,7 +38,7 @@ public class ChatterTracking : MonoBehaviour
                     chatter.GetComponent<ChatterAI>().movingLeft = true;
                 }
             }
-            else if(player.transform.position.x > chatter.transform.position.x)
+            else if((player.transform.position.x - chatter.transform.position.x) > 2)
             {
                 if (Mathf.Sign(chatter.transform.localScale.x) == 1)
                 {

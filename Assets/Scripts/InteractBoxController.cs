@@ -23,6 +23,11 @@ public class InteractBoxController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -40,6 +45,13 @@ public class InteractBoxController : MonoBehaviour
                 other.GetComponent<DialogueTrigger>().conditionMet = true;
                 other.GetComponent<DialogueTrigger>().TriggerDialogue();
                 canInteract = false;
+            }
+        }
+        else if(canInteract && GetComponentInParent<PlayerController>().canControl && other.GetComponent<SavePointController>())
+        {
+            if(Input.GetButtonDown("Interact"))
+            {
+                other.GetComponent<SavePointController>().Save();
             }
         }
     }

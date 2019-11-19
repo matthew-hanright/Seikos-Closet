@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlatformMove : MonoBehaviour
 {
+    [Header ("Must be the left point")]
     public Vector2 startPoint;
+    [Header("Must be the right point")]
     public Vector2 endPoint;
     public bool shouldMove = true;
     public float magicForceNumber = 23;  //Magic constant to make the player move the right speed when on the platform
