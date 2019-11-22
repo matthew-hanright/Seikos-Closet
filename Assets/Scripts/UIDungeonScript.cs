@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UIDungeonScript : MonoBehaviour
 {
-    public Text healthDisplay;
-    public Text shieldDisplay;
+    public Slider healthDisplay;
+    public Slider shieldDisplay;
 
     private void Start()
     {
@@ -15,12 +15,12 @@ public class UIDungeonScript : MonoBehaviour
 
     public void GrabHealth(int health)
     {
-        healthDisplay.text = "Health: " + health;
+        healthDisplay.value = health;
     }
 
     public void GrabShield(int shield)
     {
-        shieldDisplay.text = "Shield: " + shield;
+        shieldDisplay.value = shield;
     }
 
 }

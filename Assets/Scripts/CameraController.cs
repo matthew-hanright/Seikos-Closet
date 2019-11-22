@@ -23,21 +23,9 @@ public class CameraController : MonoBehaviour
     public bool followPlayer = true;
     public bool needToChangeLayer = false;
 
-    private float maxYSpeed = 20f;
+    public float maxYSpeed = 20f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         TrackingPoint = player.GetComponent<PlayerController>().GetPosition();
         if (followPlayer)

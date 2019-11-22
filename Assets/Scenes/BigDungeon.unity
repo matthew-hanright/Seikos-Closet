@@ -8596,16 +8596,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
-        type: 3}
-      propertyPath: maxJumpHeight
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184887781497828858, guid: 00b87b0789e92a844a09cd4f240be22b,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 40
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00b87b0789e92a844a09cd4f240be22b, type: 3}
 --- !u!1 &1122184694 stripped
@@ -13261,6 +13251,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 775200644}
+    - target: {fileID: 8941266910013425758, guid: 70eb57fd0b2b67b48aaeb3b9d92f540e,
+        type: 3}
+      propertyPath: ySpeedMultiplier
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8941266910013425758, guid: 70eb57fd0b2b67b48aaeb3b9d92f540e,
+        type: 3}
+      propertyPath: maxYSpeed
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70eb57fd0b2b67b48aaeb3b9d92f540e, type: 3}
 --- !u!1 &1689350196

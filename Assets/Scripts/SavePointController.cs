@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using System.IO;
+using UnityEditor;
 
 public class SavePointController : MonoBehaviour
 {
@@ -56,13 +57,15 @@ public class SavePointController : MonoBehaviour
         newSave.currentRoom = SceneManager.GetActiveScene().name;
         newSave.Create();
         string saveName = "save";
-        int counter = 1;
-        while(File.Exists(saveName))
+        StreamWriter saveFile;
+        if (File.Exists(saveName))
         {
-            saveName = "save" + counter;
-            counter++;
+            saveFile = new StreamWriter(File.Open(saveName, FileMode.Create));
         }
-        var saveFile = File.CreateText(saveName);
+        else
+        {
+            saveFile = new StreamWriter((FileStream)File.CreateText(saveName).BaseStream);
+        }
         saveFile.WriteLine(newSave.currentRoom);
         foreach(KeyValuePair<string, bool> value in newSave.saveValues)
         {
