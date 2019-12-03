@@ -9,11 +9,14 @@ public class DialogueManager : MonoBehaviour
     public Text dialougeText;
     public Animator animator;
     public PlayerController player;
+    public Text[] Choices;
 
     private Queue<string> sentences;
     private bool haveControl = false;
     private bool giveControl = false;
     private bool goNext = false;
+    private bool choices;
+    private DialogueTrigger nextLink;
 
     
 
@@ -27,24 +30,18 @@ public class DialogueManager : MonoBehaviour
     {
         if (haveControl) //If this object has control
         {
-            if (Input.GetAxis("Interact") < 0.2)
+            if (Input.GetButtonDown("Interact"))
             {
-                //If the interact button isn't being hit, the next hit will progress dialogue
-                goNext = true;
-            }
-            if (goNext && Input.GetAxis("Interact") > 0.8)
-            {
-                //Progress dialogue
-                goNext = false;
                 DisplayNextSentence();
             }
         }
         
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, DialogueTrigger nextLink)
     {
         Debug.Log("Checkpoint 3");
+        this.nextLink = nextLink;
         sentences = new Queue<string>();
         player.canControl = false;
         haveControl = true;
@@ -58,6 +55,7 @@ public class DialogueManager : MonoBehaviour
         
         foreach(string sentence in dialogue.sentences)
         {
+            
             sentences.Enqueue(sentence);
         }
 
@@ -66,15 +64,18 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        Debug.Log("Checkpoint 4");
-        if (sentences.Count == 0)
+        
+        if (sentences.Count <= 0)
         {
+            Debug.Log("Checkpoint 4");
             EndDialogue();
-            return;
         }
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        if(sentences.Count > 0)
+        {
+            string sentence = sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+        }
     }
 
     IEnumerator TypeSentence (string sentence)
@@ -89,7 +90,11 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        Debug.Log("Checkpoint 5");
+        Debug.Log("LAST CHECHPOINT");
+        if(nextLink != null)
+        {
+            nextLink.conditionMet = true;
+        }
         animator.SetBool("IsOpen", false);
         haveControl = false;
         player.canControl = true;

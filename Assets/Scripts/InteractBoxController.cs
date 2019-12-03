@@ -40,10 +40,10 @@ public class InteractBoxController : MonoBehaviour
         {
             if (Input.GetAxis("Interact") > 0.5) 
             {
-                Debug.Log("Checkpoint1");
+                Debug.Log("Checkpoint 1");
                 //Call the object's dialogue, and the player can no longer interact, i.e. begin another dialogue
                 other.GetComponent<DialogueTrigger>().conditionMet = true;
-                other.GetComponent<DialogueTrigger>().TriggerDialogue();
+                //other.GetComponent<DialogueTrigger>().TriggerDialogue();
                 canInteract = false;
             }
         }
