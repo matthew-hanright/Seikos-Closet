@@ -11,14 +11,15 @@ GameObject:
   - component: {fileID: 4026912008857735054}
   - component: {fileID: 8014413719782326639}
   - component: {fileID: 6480214270532846880}
-  - component: {fileID: 2512439866613905941}
+  - component: {fileID: 605506688}
+  - component: {fileID: 605506692}
   m_Layer: 0
   m_Name: EyeSpike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4026912008857735054
 Transform:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &2512439866613905941
+--- !u!60 &605506688
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +119,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.9973982, y: 0.5015304}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -127,10 +128,29 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.45999998, y: 0.5}
-      - {x: -0.5, y: 0.02}
-      - {x: -0.5, y: -0.01}
-      - {x: -0.48999998, y: -0.03}
-      - {x: 0.45999998, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: -0.037398223, y: 0.49846956}
+      - {x: -0.9973982, y: 0.018469581}
+      - {x: -0.9973982, y: -0.011530418}
+      - {x: -0.9873982, y: -0.031530418}
+      - {x: -0.037398223, y: -0.5015304}
+      - {x: 0.002601776, y: -0.5015304}
+      - {x: 0.002601776, y: 0.49846956}
+--- !u!95 &605506692
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4149048670172225471}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1bf9d44acc6d12949bd64d6171009d47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

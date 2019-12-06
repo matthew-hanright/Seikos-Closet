@@ -8,9 +8,12 @@ public class Boss1 : MonoBehaviour
     public Vector2 bottomPosition;
 
     public GameObject player;
+    private int maxHealth = 300;
+    private int currentHealth = 300;
+    public int damage = 2;
 
     private bool shouldMove = true;
-    private bool isMoving = false;
+    public bool isMoving = false;
     private float goalDiscrepancy = 1.5f;
     private Vector2 goalNewPosition = new Vector2(0.0f, 0.0f);
     public int maxSpeed = 3;
@@ -123,7 +126,6 @@ public class Boss1 : MonoBehaviour
         isAttacking = false;
         attack1Start = Time.time;
         eyeSpike.SetActive(false);
-        print("attack over");
     }
 
     private void neutralMove()
