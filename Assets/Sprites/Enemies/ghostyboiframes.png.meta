@@ -1,7 +1,27 @@
 fileFormatVersion: 2
 guid: 41828d3177dcdc4479d5c3b6e29e4e4d
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: ghostyboiframes_0
+    21300002: ghostyboiframes_1
+    21300004: ghostyboiframes_2
+    21300006: ghostyboiframes_3
+    21300008: ghostyboiframes_4
+    21300010: ghostyboiframes_5
+    21300012: ghostyboiframes_6
+    21300014: ghostyboiframes_7
+    21300016: ghostyboiframes_8
+    21300018: ghostyboiframes_9
+    21300020: ghostyboiframes_10
+    21300022: ghostyboiframes_11
+    21300024: ghostyboiframes_12
+    21300026: ghostyboiframes_13
+    21300028: ghostyboiframes_14
+    21300030: ghostyboiframes_15
+    21300032: ghostyboiframes_16
+    21300034: ghostyboiframes_17
+    21300036: ghostyboiframes_18
+    21300038: ghostyboiframes_19
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -40,7 +60,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,9 +89,191 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ghostyboiframes_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 340
+        height: 391
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7e5d45d403c3f49a56e0f3488d88ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghostyboiframes_1
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 392
+        width: 340
+        height: 391
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322fdff9be05cfa4a9b4f026cd9b39ac
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghostyboiframes_2
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 391
+        width: 340
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22902925ff705d848b362fc96da55d1f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghostyboiframes_3
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 391
+        width: 340
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14604eab079e5e0409882f052417b49a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghostyboiframes_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 340
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee1cd3ed6b27b1c478c7a47c0554a28a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghostyboiframes_5
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 0
+        width: 340
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cdca7cec162b948bf98467a5fd486c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghostyboiframes_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 340
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7f149ddb13c9a4aa18ec9fe06d8577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghostyboiframes_7
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 0
+        width: 340
+        height: 392
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2b0d1ed14fee6d4e9c5c545bbabad8b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

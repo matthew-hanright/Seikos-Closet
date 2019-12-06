@@ -32,6 +32,7 @@ public class ParentEnemy : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            print("Enemy Collision");
             if (collision.transform.position.x < transform.position.x)
             {
                 collision.gameObject.GetComponent<PlayerController>().takeDamage(damage, 
@@ -49,6 +50,7 @@ public class ParentEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            print("Enemy Collision");
             if (collision.transform.position.x < transform.position.x)
             {
                 collision.gameObject.GetComponent<PlayerController>().takeDamage(damage,
