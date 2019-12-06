@@ -9,6 +9,7 @@ public class AttackMeleeController : MonoBehaviour
     private float frameRate = 0.24f;
     private int currentFrame = 0;
     private int damage = 15;
+    public int damageMultiplier = 1;
 
     private List<float> ignoreEnemy;
 
@@ -48,7 +49,7 @@ public class AttackMeleeController : MonoBehaviour
             }
             if (!alreadyHit)
             {
-                collision.gameObject.GetComponent<ParentEnemy>().health -= damage;
+                collision.gameObject.GetComponent<ParentEnemy>().health -= damage * damageMultiplier;
                 ignoreEnemy.Add(collision.gameObject.GetInstanceID());
             }
         }

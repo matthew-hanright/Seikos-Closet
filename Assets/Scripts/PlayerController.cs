@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float invincibilityLength = 2;
     public float regenLength = 1f;
     public int regenAmount = 2;
+    private Color damageColor = new Color(1.0f, 0.7f, 0.7f);
 
     public bool lookingRight = true;
 
@@ -52,8 +53,6 @@ public class PlayerController : MonoBehaviour
     public float lookUpDistance = 5;
     public float lookDownDistance = 5;
 
-    private float magicMeleeDistance = 8f;
-
     private bool power1Available = true;
     private float power1Length = 10f;
     private float power1Cooldown = 60f;
@@ -66,6 +65,7 @@ public class PlayerController : MonoBehaviour
     private float power2Cooldown = 90f;
     private float power2StartTime;
     private bool power2Active = false;
+    private int power2Multiplier = 2;
     public GameObject power2Icon;
 
     private UIDungeonScript UIDungeon;
@@ -86,6 +86,12 @@ public class PlayerController : MonoBehaviour
         if(Time.time >= timeOfHit + invincibilityLength)
         {
             isInvincible = false;
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            gameObject.layer = 9;
+        }
+        else if(Time.time >= timeOfHit + invincibilityLength / 3)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
         }
 
         if(Input.GetButtonDown("Escape") && Time.timeScale > 0)
@@ -195,11 +201,19 @@ public class PlayerController : MonoBehaviour
 
         if(power1Active)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+            GetComponent<SpriteRenderer>().color = new Color(
+                GetComponent<SpriteRenderer>().color.r,
+                GetComponent<SpriteRenderer>().color.g,
+                GetComponent<SpriteRenderer>().color.b,
+                0.5f);
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            GetComponent<SpriteRenderer>().color = new Color(
+                GetComponent<SpriteRenderer>().color.r,
+                GetComponent<SpriteRenderer>().color.g,
+                GetComponent<SpriteRenderer>().color.b,
+                1f);
         }
     }
 
@@ -284,6 +298,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Fire1") && !isAttacking)
             {
                 GameObject combo = Instantiate(attacks[0]) as GameObject;
+                //Check for power 2, apply multiplier
+                if(power2Active)
+                {
+                    combo.GetComponent<AttackMeleeController>().damageMultiplier = power2Multiplier;
+                }
+
                 if (Input.GetAxis("Look Up") > 0.1)
                 {
                     combo.transform.position = new Vector2(
@@ -356,12 +376,27 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Fire2") && !isAttacking)
             {
                 GameObject combo = Instantiate(attacks[1]) as GameObject;
-                if (Input.GetAxis("Look Up") > 0.1)
+                //Check for power 2, apply multiplier
+                if (power2Active)
                 {
+                    combo.GetComponent<AttackMeleeController>().damageMultiplier = power2Multiplier;
+                }
+
+                if (Input.GetAxis("Look Up") > 0.1f)
+                {
+                    combo.transform.Rotate(new Vector3(0.0f, 0.0f, 90f));
                     combo.transform.position = new Vector2(
                         transform.position.x,
                         transform.position.y + transform.lossyScale.y);
                     combo.GetComponent<Attack1Script>().GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, combo.GetComponent<Attack1Script>().speed);
+                }
+                else if(Input.GetAxis("Look Down") > 0.1f)
+                {
+                    combo.transform.Rotate(new Vector3(0.0f, 0.0f, -90f));
+                    combo.transform.position = new Vector2(
+                        transform.position.x,
+                        transform.position.y - transform.lossyScale.y);
+                    combo.GetComponent<Attack1Script>().GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -combo.GetComponent<Attack1Script>().speed);
                 }
                 else
                 {
@@ -378,6 +413,9 @@ public class PlayerController : MonoBehaviour
                         combo.transform.position = new Vector2(
                             transform.position.x,
                             transform.position.y);
+                        combo.transform.localScale = new Vector2(
+                            -combo.transform.localScale.x,
+                            combo.transform.localScale.y);
                         combo.GetComponent<Attack1Script>().GetComponent<Rigidbody2D>().velocity = new Vector2(
                             -combo.GetComponent<Attack1Script>().speed, 0.0f);
                     }
@@ -450,6 +488,25 @@ public class PlayerController : MonoBehaviour
                 power1Available = true;
                 power1Icon.SetActive(true);
             }
+
+            //Power 2
+            if (power2Available && Input.GetButtonDown("Power 2"))
+            {
+                power2Available = false;
+                power2Active = true;
+                power2StartTime = Time.time;
+                power2Icon.SetActive(false);
+            }
+
+            if (Time.time > power2StartTime + power2Length)
+            {
+                power2Active = false;
+            }
+            if (Time.time > power2StartTime + power2Cooldown)
+            {
+                power2Available = true;
+                power2Icon.SetActive(true);
+            }
         }
         else
         {
@@ -481,6 +538,8 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            GetComponent<SpriteRenderer>().color = damageColor;
+            gameObject.layer = 13;
             isInvincible = true;
             timeOfHit = Time.time;
             GetComponent<Rigidbody2D>().velocity = new Vector2(knockback.x, knockback.y);

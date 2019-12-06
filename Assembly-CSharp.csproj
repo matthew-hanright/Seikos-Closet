@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BossAttack1AnimationEnd.cs" />
     <Compile Include="Assets\Objects\CutsceneCharater.cs" />
     <Compile Include="Assets\Objects\InteractableParent.cs" />
     <Compile Include="Assets\Scripts\AIGrounding.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Assets\Scripts\BasicDialogue.cs" />
     <Compile Include="Assets\Scripts\BleedAI.cs" />
     <Compile Include="Assets\Scripts\BleedTriggerController.cs" />
+    <Compile Include="Assets\Scripts\Boss1.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraMoveRoom.cs" />
     <Compile Include="Assets\Scripts\ChatterAI.cs" />
