@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    
+    public List<KeyValuePair<string, bool>> progressionValues;
     public static int MAX_HEALTH = 2;
     public static int MAX_SHIELD = 100;
 
@@ -45,14 +45,28 @@ public class PlayerController : MonoBehaviour
     public Sprite[] attack1Sprite;
     public Sprite[] attackUpSeiko;
     public Sprite[] jump;
-    private float attackFrameRate = 0.12f;
-    private float jumpFrameRate = 0.12f;
+    private float attackFrameRate = 0.06f;
+    private float jumpFrameRate = 0.06f;
     private bool isAttacking = false;
 
     public float lookUpDistance = 5;
     public float lookDownDistance = 5;
 
     private float magicMeleeDistance = 8f;
+
+    private bool power1Available = true;
+    private float power1Length = 10f;
+    private float power1Cooldown = 60f;
+    private float power1StartTime;
+    private bool power1Active = false;
+    public GameObject power1Icon;
+
+    private bool power2Available = true;
+    private float power2Length = 20f;
+    private float power2Cooldown = 90f;
+    private float power2StartTime;
+    private bool power2Active = false;
+    public GameObject power2Icon;
 
     private UIDungeonScript UIDungeon;
 	
@@ -83,7 +97,7 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 1;
         }
 
-        if(Input.GetButton("Regen"))
+        if(canControl && Input.GetButton("Regen"))
         {
             if(canRegen)
             {
@@ -177,6 +191,15 @@ public class PlayerController : MonoBehaviour
                     GetComponent<SpriteRenderer>().sprite = jump[currentFrame];
                 }
             }
+        }
+
+        if(power1Active)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
     }
 
@@ -325,6 +348,8 @@ public class PlayerController : MonoBehaviour
                 {
                     GetComponent<SpriteRenderer>().sprite = attack1Seiko[currentFrame];
                 }
+
+                
             }
 
             //Attack 2
@@ -403,19 +428,33 @@ public class PlayerController : MonoBehaviour
                     GetComponent<Rigidbody2D>().velocity -= new Vector2(rateOfStopping, 0.0f);
                 }
             }
+
+            //Powers
+            //Power 1
+            if(power1Available && Input.GetButtonDown("Power 1"))
+            {
+                gameObject.layer = 13;
+                power1Available = false;
+                power1Active = true;
+                power1StartTime = Time.time;
+                power1Icon.SetActive(false);
+            }
+
+            if(Time.time > power1StartTime + power1Length)
+            {
+                gameObject.layer = 9;
+                power1Active = false;
+            }
+            if(Time.time > power1StartTime + power1Cooldown)
+            {
+                power1Available = true;
+                power1Icon.SetActive(true);
+            }
         }
         else
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
         }
-        /*
-        if (isInvincible)
-        {
-            if (currentSpeed < maxSpeed)
-            {
-                currentSpeed = maxSpeed;
-            }
-        }*/
     }
 
     public void takeDamage(int damage, Vector2 knockback)

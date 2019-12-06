@@ -76,8 +76,11 @@
     <Compile Include="Assets\Scripts\ChatterTurning.cs" />
     <Compile Include="Assets\Scripts\ChatterVision.cs" />
     <Compile Include="Assets\Scripts\DemoMenu.cs" />
+    <Compile Include="Assets\Scripts\GBVisionScript.cs" />
+    <Compile Include="Assets\Scripts\GhostBoiScript.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\InteractBoxController.cs" />
+    <Compile Include="Assets\Scripts\Load.cs" />
     <Compile Include="Assets\Scripts\ParentEnemy.cs" />
     <Compile Include="Assets\Scripts\PlatformMove.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
