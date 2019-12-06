@@ -13,14 +13,12 @@ public class PlatformMove : MonoBehaviour
     public float speed; //Number of times to subdivide the distance, higher is slower
     public bool currentGoalPoint; //True for moving to start, false for moving to end
     private float intervalX, intervalY;
-    private bool movingHorizontal = true;
 
     // Start is called before the first frame update
     void Start()
     {
         if(startPoint.x == endPoint.x)
         {
-            movingHorizontal = false;
             GetComponent<SurfaceEffector2D>().enabled = false;
         }
     }
