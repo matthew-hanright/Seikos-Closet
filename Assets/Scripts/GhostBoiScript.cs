@@ -20,16 +20,17 @@ public class GhostBoiScript : ParentEnemy
     // Start is called before the first frame update
     void Start()
     {
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
         frameStartTime = Time.time;
         frameRate = Random.Range(frameRateMin, frameRateMax);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //update currentframe
-        if(Time.time > frameStartTime + frameRate)
+        if (Time.time > frameStartTime + frameRate)
         {
             frameStartTime = Time.time;
             frameRate = Random.Range(frameRateMin, frameRateMax);
@@ -40,8 +41,9 @@ public class GhostBoiScript : ParentEnemy
         //move towards the player character
         if (target != null && seesPlayer)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-            if (transform.position.x > 0)
+            Vector2 posx = transform.position;
+            transform.position = Vector2.MoveTowards(posx, target.transform.position, speed * Time.deltaTime);
+            if (posx.x - transform.position.x < 0)
                 spriteRenderer.flipX = true;
             else
                 spriteRenderer.flipX = false;
