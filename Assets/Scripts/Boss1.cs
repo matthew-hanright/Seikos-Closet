@@ -8,8 +8,8 @@ public class Boss1 : MonoBehaviour
     public Vector2 bottomPosition;
 
     public GameObject player;
-    private int maxHealth = 300;
-    private int currentHealth = 300;
+    private int maxHealth = 3000;
+    public int currentHealth = 3000;
     public int damage = 2;
 
     private bool shouldMove = true;
@@ -27,14 +27,17 @@ public class Boss1 : MonoBehaviour
     private float attack1Delay = 0.5f;
     private float attack1Speed = 2f;
     private float attack1CoolDown = 5f;
-    private bool attack1AnimSet = false;
-    private Vector2 attack1Distance;
 
     private bool attack2Active = false;
+    private float attack2Start;
+    private float attack2Delay = 0.5f;
+    private float attack2Speed = 2f;
+    private float attack2CoolDown = 5f;
+
+    public GameObject attack2Spikes;
 
     public GameObject eyeSpike;
     private Vector3 eyeSpikeOffset;
-    private Vector3 eyeSpikeOriginalScale;
     private Quaternion eyeSpikeOriginalRot;
 
     //States: 0 = neutral, 1+ = attack of that number
@@ -44,7 +47,6 @@ public class Boss1 : MonoBehaviour
     void Start()
     {
         eyeSpikeOffset = transform.position - eyeSpike.transform.position;
-        eyeSpikeOriginalScale = eyeSpike.transform.localScale;
         eyeSpikeOriginalRot = eyeSpike.transform.rotation;
         player = FindObjectOfType<PlayerController>().gameObject;
     }
@@ -79,6 +81,16 @@ public class Boss1 : MonoBehaviour
                         neutralMove();
                     }
                     break;
+                case 2:
+                    if(Time.time > attack2Start + attack2CoolDown)
+                    {
+                        attack2();
+                    }
+                    else
+                    {
+                        neutralMove();
+                    }
+                    break;
             }
         }
     }
@@ -95,25 +107,6 @@ public class Boss1 : MonoBehaviour
                     {
                         eyeSpike.GetComponent<Animator>().SetBool("expandStart", true);
                     }
-                    /*if(eyeSpike.transform.position.x - eyeSpike.transform.localScale.x > attack1Distance.x)
-                    {
-                        eyeSpike.transform.localScale = new Vector2(
-                            eyeSpike.transform.localScale.x + attack1Speed, 
-                            eyeSpike.transform.localScale.y);
-                        eyeSpike.transform.position += new Vector3(
-                            Mathf.Sin(eyeSpike.transform.rotation.z + 180) * attack1Speed,
-                            Mathf.Cos(eyeSpike.transform.rotation.z + 180) * attack1Speed, 
-                            0.0f);
-                        print(attack1Distance);
-                    }
-                    else
-                    {
-                        eyeSpike.transform.localScale = eyeSpikeOriginalScale;
-                        attack1Active = false;
-                        isAttacking = false;
-                        attack1Start = Time.time;
-                        eyeSpike.SetActive(false);
-                    }*/
                 }
             }
         }
@@ -121,11 +114,20 @@ public class Boss1 : MonoBehaviour
 
     public void endAttack1()
     {
-        eyeSpike.transform.localScale = eyeSpikeOriginalScale;
         attack1Active = false;
         isAttacking = false;
         attack1Start = Time.time;
         eyeSpike.SetActive(false);
+    }
+
+    public void endAttack2()
+    {
+        attack2Spikes.SetActive(false);
+        attack2Spikes.GetComponent<boss1Attack2Controller>().spikesSet = false;
+        attack2Spikes.GetComponent<boss1Attack2Controller>().spikesDone = 0;
+        attack2Active = false;
+        isAttacking = false;
+        attack2Start = Time.time;
     }
 
     private void neutralMove()
@@ -152,7 +154,6 @@ public class Boss1 : MonoBehaviour
         isAttacking = true;
         attack1Active = true;
         attack1Start = Time.time;
-        attack1Distance = eyeSpike.transform.position - player.transform.position;
         eyeSpike.transform.position = transform.position - eyeSpikeOffset;
         Vector3 vectorToTarget = player.transform.position - eyeSpike.transform.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg + 180;
@@ -160,5 +161,13 @@ public class Boss1 : MonoBehaviour
         eyeSpike.transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 360);
         eyeSpike.SetActive(true);
         eyeSpike.GetComponent<Animator>().SetBool("endAnimation", false);
+    }
+
+    private void attack2()
+    {
+        attack2Active = true;
+        isAttacking = true;
+        attack2Spikes.GetComponent<boss1Attack2Controller>().startTime = Time.time;
+        attack2Spikes.SetActive(true);
     }
 }

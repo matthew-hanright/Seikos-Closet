@@ -53,5 +53,17 @@ public class AttackMeleeController : MonoBehaviour
                 ignoreEnemy.Add(collision.gameObject.GetInstanceID());
             }
         }
+        else if (collision.gameObject.tag == "Boss1")
+        {
+            if (ignoreEnemy.Contains(collision.gameObject.GetInstanceID()))
+            {
+                alreadyHit = true;
+            }
+            if (!alreadyHit)
+            {
+                collision.gameObject.GetComponent<Boss1>().currentHealth -= damage * damageMultiplier;
+                ignoreEnemy.Add(collision.gameObject.GetInstanceID());
+            }
+        }
     }
 }

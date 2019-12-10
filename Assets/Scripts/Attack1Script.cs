@@ -11,12 +11,19 @@ public class Attack1Script : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Solid")
+        {
             Object.Destroy(this.gameObject);
-
-        if (collision.gameObject.tag == "Enemy")
+        }
+        else if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<ParentEnemy>().health -= damage * damageMultiplier;
             Object.Destroy(this.gameObject);
         }
+        else if(collision.gameObject.tag == "Boss1")
+        {
+            collision.gameObject.GetComponent<Boss1>().currentHealth -= damage * damageMultiplier;
+            Object.Destroy(this.gameObject);
+        }
+
     }
 }

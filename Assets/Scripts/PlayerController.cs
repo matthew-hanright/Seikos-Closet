@@ -68,14 +68,13 @@ public class PlayerController : MonoBehaviour
     private int power2Multiplier = 2;
     public GameObject power2Icon;
 
-    private UIDungeonScript UIDungeon;
+    public UIDungeonScript UIDungeon;
 	
     // Start is called before the first frame update
     void Start()
     {
         player = this.gameObject;
         frameStartTime = Time.time;
-        UIDungeon = FindObjectOfType<UIDungeonScript>();
         UIDungeon.GrabHealth(health);
         UIDungeon.GrabShield(shield);
     }
@@ -527,7 +526,7 @@ public class PlayerController : MonoBehaviour
                 }
                 UIDungeon.GrabShield(shield);
             }
-            if(shield < 0) { 
+            if(shield <= 0) { 
                 if (health > 0)
                 {
                     health -= 1;

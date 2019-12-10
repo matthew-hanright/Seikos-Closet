@@ -6,7 +6,9 @@ public class bossRoomEnter : MonoBehaviour
 {
     public Boss1 boss;
     public Camera dungeonCamera;
+    public UIDungeonScript dungeonUI;
     public Camera bossCamera;
+    public UIDungeonScript bossUI;
     private float scaleMultiplier = 1.1f;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class bossRoomEnter : MonoBehaviour
                 dungeonCamera.gameObject.SetActive(false);
                 bossCamera.gameObject.SetActive(true);
                 boss.enabled = true;
+                collision.GetComponent<PlayerController>().UIDungeon = bossUI;
             }
             else
             {
@@ -37,6 +40,7 @@ public class bossRoomEnter : MonoBehaviour
                 boss.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 boss.isMoving = false;
                 boss.enabled = false;
+                collision.GetComponent<PlayerController>().UIDungeon = dungeonUI;
             }
         }
     }
