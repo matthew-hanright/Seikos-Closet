@@ -8,8 +8,8 @@ public class Boss1 : MonoBehaviour
     public Vector2 bottomPosition;
 
     public GameObject player;
-    private int maxHealth = 300;
-    private int currentHealth = 300;
+    private int maxHealth = 3000;
+    public int currentHealth = 3000;
     public int damage = 2;
 
     private bool shouldMove = true;
@@ -31,6 +31,21 @@ public class Boss1 : MonoBehaviour
     private Vector2 attack1Distance;
 
     private bool attack2Active = false;
+    private float attack2Start;
+    private float attack2Delay = 0.75f;
+    private float attack2Speed = 2f;
+    private float attack2CoolDown = 5f;
+    public GameObject attack2Obj;
+
+    private bool attack3Active = false;
+    private float attack3Start;
+    private float attack3Delay = 0.5f;
+    private float attack3Speed = 2f;
+    private float attack3CoolDown = 5f;
+    public Vector3 attack3SpawnLeft;
+    public Vector3 attack3SpawnRight;
+    public GameObject chatter;
+    public GameObject activeVision;
 
     public GameObject eyeSpike;
     private Vector3 eyeSpikeOffset;
@@ -52,6 +67,11 @@ public class Boss1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currentHealth <= 0)
+        {
+            Destroy(eyeSpike);
+            Destroy(this.gameObject);
+        }
         if (isMoving)
         {
             if(Mathf.Abs(transform.position.y - goalNewPosition.y) < goalDiscrepancy)
@@ -79,6 +99,33 @@ public class Boss1 : MonoBehaviour
                         neutralMove();
                     }
                     break;
+                case 2:
+                    if (Time.time > attack2Start + attack2CoolDown)
+                    {
+                        attack2();
+                    }
+                    else
+                    {
+                        neutralMove();
+                    }
+                    break;
+                case 3:
+                    if(Time.time > attack3Start + attack3CoolDown)
+                    {
+                        attack3();
+                    }
+                    else
+                    {
+                        neutralMove();
+                    }
+                    break;
+            }
+        }
+        else if(isAttacking && attack3Active)
+        {
+            if(Time.time > attack3Start + attack3Delay)
+            {
+                attack3End();
             }
         }
     }
@@ -95,37 +142,9 @@ public class Boss1 : MonoBehaviour
                     {
                         eyeSpike.GetComponent<Animator>().SetBool("expandStart", true);
                     }
-                    /*if(eyeSpike.transform.position.x - eyeSpike.transform.localScale.x > attack1Distance.x)
-                    {
-                        eyeSpike.transform.localScale = new Vector2(
-                            eyeSpike.transform.localScale.x + attack1Speed, 
-                            eyeSpike.transform.localScale.y);
-                        eyeSpike.transform.position += new Vector3(
-                            Mathf.Sin(eyeSpike.transform.rotation.z + 180) * attack1Speed,
-                            Mathf.Cos(eyeSpike.transform.rotation.z + 180) * attack1Speed, 
-                            0.0f);
-                        print(attack1Distance);
-                    }
-                    else
-                    {
-                        eyeSpike.transform.localScale = eyeSpikeOriginalScale;
-                        attack1Active = false;
-                        isAttacking = false;
-                        attack1Start = Time.time;
-                        eyeSpike.SetActive(false);
-                    }*/
                 }
             }
         }
-    }
-
-    public void endAttack1()
-    {
-        eyeSpike.transform.localScale = eyeSpikeOriginalScale;
-        attack1Active = false;
-        isAttacking = false;
-        attack1Start = Time.time;
-        eyeSpike.SetActive(false);
     }
 
     private void neutralMove()
@@ -160,5 +179,65 @@ public class Boss1 : MonoBehaviour
         eyeSpike.transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 360);
         eyeSpike.SetActive(true);
         eyeSpike.GetComponent<Animator>().SetBool("endAnimation", false);
+    }
+    
+    private void attack2()
+    {
+        isAttacking = true;
+        attack2Active = true;
+        attack2Start = Time.time;
+        attack2Obj.GetComponent<attack2controller>().startTime = Time.time;
+        attack2Obj.GetComponent<attack2controller>().delay = attack2Delay;
+        attack2Obj.SetActive(true);
+    }
+
+    private void attack3()
+    {
+        isAttacking = true;
+        attack3Active = true;
+        attack3Start = Time.time;
+        int i = (int)Mathf.Round(Random.Range(1, 3));
+        int j = 0;
+        for (j = 0; j < i; j++)
+        {
+            GameObject newChatter = Instantiate(chatter) as GameObject;
+            float randX = (attack3SpawnRight.x - attack3SpawnLeft.x) * Random.Range(0, 1);
+            newChatter.transform.position += new Vector3(
+                attack3SpawnRight.x - randX,
+                attack3SpawnRight.y,
+                attack3SpawnRight.z);
+            GameObject newVision = Instantiate(activeVision) as GameObject;
+            newVision.transform.position += new Vector3(
+                attack3SpawnRight.x - randX,
+                attack3SpawnRight.y,
+                attack3SpawnRight.z);
+            newVision.GetComponent<ChatterTracking>().player = player;
+            newVision.GetComponent<ChatterTracking>().chatter = newChatter;
+            newChatter.GetComponent<ChatterAI>().activeVision = newVision;
+        }
+    }
+
+    public void endAttack1()
+    {
+        eyeSpike.transform.localScale = eyeSpikeOriginalScale;
+        attack1Active = false;
+        isAttacking = false;
+        attack1Start = Time.time;
+        eyeSpike.SetActive(false);
+    }
+
+    public void endAttack2()
+    {
+        attack2Obj.SetActive(false);
+        isAttacking = false;
+        attack2Active = false;
+        attack2Start = Time.time;
+    }
+
+    public void attack3End()
+    {
+        isAttacking = false;
+        attack3Active = false;
+        attack3Start = Time.time;
     }
 }

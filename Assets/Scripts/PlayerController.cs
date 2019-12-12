@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     private int power2Multiplier = 2;
     public GameObject power2Icon;
 
-    private UIDungeonScript UIDungeon;
+    public UIDungeonScript UIDungeon;
 	
     // Start is called before the first frame update
     void Start()
