@@ -1,0 +1,560 @@
+fileFormatVersion: 2
+guid: 291a26266f9b34942a93cd9e393aa544
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: grassbushlog_0
+    21300002: grassbushlog_1
+    21300004: grassbushlog_2
+    21300006: grassbushlog_3
+    21300008: grassbushlog_4
+    21300010: grassbushlog_5
+    21300012: grassbushlog_6
+    21300014: grassbushlog_7
+    21300016: grassbushlog_8
+    21300018: grassbushlog_9
+    21300020: grassbushlog_10
+    21300022: grassbushlog_11
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 0
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: grassbushlog_0
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 809
+        width: 280
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 236acdc321088664e8083ac8f1aebf59
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_1
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 837
+        width: 280
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855cb2fca945a5c4eb11efeb01d38b31
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_2
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 713
+        width: 361
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4544b0931d97a4c8156f155e3cc5ae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_3
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 661
+        width: 361
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9810299bb189d24b8ad1f1d23ccf28c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_4
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 567
+        width: 897
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf53a8e6cf46ad4abeefbe9451097ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 410
+        width: 893
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce29360a9ab3104dbbe11a0496c0e18
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_6
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 311
+        width: 919
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17256452aee26d243b48f4672b8aecad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 195
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7167a38f4755a064c8cf1d7c1f49a601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_8
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 1
+        width: 195
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7a4b0354e420254c95632e5fe16f489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_9
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 4
+        width: 195
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c78cc4237d6e9514aa3ddbea94e6795b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_10
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 3
+        width: 195
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cbf7ff0c67bde24a823b78c3db6cde7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grassbushlog_11
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 2
+        width: 196
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff2d1f1a94b7aa44d87e7626be7622fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -535, y: -312}
+      - {x: -572, y: -335}
+      - {x: -572, y: -380}
+      - {x: -558, y: -396}
+      - {x: -546, y: -399}
+      - {x: -543, y: -399}
+      - {x: -549, y: -400}
+      - {x: -572, y: -398}
+      - {x: -572, y: -447}
+      - {x: -374, y: -447}
+      - {x: -374, y: -342}
+      - {x: -383, y: -312}
+    - - {x: -185, y: -314}
+      - {x: -209, y: -312}
+      - {x: -295, y: -312}
+      - {x: -340, y: -329}
+      - {x: -355, y: -355}
+      - {x: -345, y: -395}
+      - {x: -335, y: -400}
+      - {x: -336, y: -400}
+      - {x: -359, y: -399}
+      - {x: -360, y: -399}
+      - {x: -360, y: -436}
+      - {x: -355, y: -447}
+      - {x: -188, y: -447}
+      - {x: -161, y: -434}
+      - {x: -161, y: -372}
+      - {x: -165, y: -353}
+    - - {x: 288, y: -310}
+      - {x: 263, y: -344}
+      - {x: 263, y: -447}
+      - {x: 436, y: -447}
+      - {x: 463, y: -438}
+      - {x: 463, y: -312}
+      - {x: 459, y: -310}
+    - - {x: 204, y: -440}
+      - {x: 207, y: -439}
+      - {x: 227, y: -437}
+      - {x: 228, y: -434}
+      - {x: 248, y: -424}
+      - {x: 248, y: -339}
+      - {x: 240, y: -310}
+      - {x: 85, y: -310}
+      - {x: 49, y: -339}
+      - {x: 49, y: -412}
+      - {x: 55, y: -429}
+      - {x: 81, y: -446}
+      - {x: 201, y: -446}
+      - {x: 201, y: -444}
+      - {x: 200, y: -437}
+      - {x: 202, y: -440}
+    - - {x: -162, y: -445}
+      - {x: 37, y: -445}
+      - {x: 37, y: -308}
+      - {x: -158, y: -308}
+      - {x: -162, y: -321}
+    - - {x: -325, y: -381}
+      - {x: -328, y: -374}
+      - {x: -328, y: -373}
+      - {x: -329, y: -376}
+      - {x: -324, y: -382}
+      - {x: -321, y: -383}
+      - {x: -318, y: -382}
+      - {x: -323, y: -383}
+      - {x: -323, y: -382}
+    - - {x: -534, y: -383}
+      - {x: -531, y: -382}
+      - {x: -535, y: -382}
+      - {x: -536, y: -381}
+    - - {x: 84, y: -378}
+      - {x: 82, y: -373}
+      - {x: 80, y: -374}
+      - {x: 83, y: -377}
+      - {x: 84, y: -377}
+      - {x: 88, y: -381}
+      - {x: 92, y: -380}
+      - {x: 90, y: -379}
+      - {x: 86, y: -381}
+      - {x: 86, y: -380}
+    - - {x: 300, y: -378}
+      - {x: 298, y: -377}
+      - {x: 301, y: -381}
+      - {x: 302, y: -381}
+      - {x: 302, y: -380}
+    - - {x: -129, y: -378}
+      - {x: -131, y: -373}
+      - {x: -125, y: -379}
+    - - {x: -419, y: -376}
+      - {x: -419, y: -373}
+      - {x: -420, y: -372}
+      - {x: -418, y: -373}
+      - {x: -419, y: -374}
+      - {x: -419, y: -375}
+      - {x: -421, y: -377}
+      - {x: -420, y: -377}
+    - - {x: -206, y: -373}
+      - {x: -208, y: -372}
+      - {x: -207, y: -374}
+      - {x: -205, y: -373}
+      - {x: -206, y: -374}
+      - {x: -206, y: -375}
+      - {x: -208, y: -378}
+      - {x: -206, y: -377}
+    - - {x: 203, y: -371}
+      - {x: 202, y: -370}
+      - {x: 204, y: -371}
+      - {x: 203, y: -372}
+      - {x: 203, y: -373}
+      - {x: 201, y: -376}
+      - {x: 203, y: -375}
+    - - {x: 418, y: -373}
+      - {x: 416, y: -371}
+      - {x: 415, y: -371}
+      - {x: 416, y: -375}
+      - {x: 417, y: -375}
+    - - {x: -8, y: -373}
+      - {x: -8, y: -370}
+      - {x: -9, y: -370}
+      - {x: -10, y: -374}
+      - {x: -9, y: -374}
+    - - {x: -435, y: -350}
+      - {x: -436, y: -349}
+      - {x: -439, y: -352}
+      - {x: -438, y: -352}
+    - - {x: -225, y: -351}
+      - {x: -223, y: -350}
+      - {x: -226, y: -352}
+      - {x: -225, y: -352}
+    - - {x: 184, y: -349}
+      - {x: 186, y: -348}
+      - {x: 183, y: -350}
+      - {x: 184, y: -350}
+    - - {x: -25, y: -347}
+      - {x: -27, y: -348}
+    - - {x: 310, y: -346}
+      - {x: 307, y: -345}
+    - - {x: -471, y: -336}
+      - {x: -476, y: -336}
+    - - {x: -258, y: -336}
+      - {x: -263, y: -336}
+    - - {x: 358, y: -333}
+      - {x: 360, y: -335}
+      - {x: 364, y: -335}
+      - {x: 366, y: -333}
+      - {x: 365, y: -334}
+      - {x: 366, y: -335}
+      - {x: 366, y: -333}
+    - - {x: 152, y: -334}
+      - {x: 153, y: -332}
+      - {x: 151, y: -333}
+      - {x: 151, y: -334}
+      - {x: 146, y: -334}
+    - - {x: -65, y: -333}
+      - {x: -60, y: -333}
+      - {x: -64, y: -332}
+      - {x: -66, y: -334}
+    - - {x: -536, y: -54}
+      - {x: -551, y: -55}
+      - {x: -570, y: -118}
+      - {x: -570, y: -138}
+      - {x: -155, y: -138}
+      - {x: 353, y: -136}
+      - {x: 353, y: -69}
+      - {x: 315, y: -54}
+    - - {x: -570, y: 104}
+      - {x: -570, y: -39}
+      - {x: -372, y: -39}
+      - {x: 327, y: -12}
+      - {x: 327, y: 104}
+    - - {x: -111, y: 324}
+      - {x: -124, y: 319}
+      - {x: -133, y: 308}
+      - {x: -114, y: 264}
+      - {x: -105, y: 262}
+      - {x: 200, y: 264}
+      - {x: 216, y: 213}
+      - {x: 153, y: 261}
+      - {x: 29, y: 259}
+      - {x: -154, y: 246}
+      - {x: -182, y: 214}
+      - {x: -240, y: 222}
+      - {x: -245, y: 220}
+      - {x: -278, y: 238}
+      - {x: -385, y: 261}
+      - {x: -558, y: 250}
+      - {x: -570, y: 174}
+      - {x: -570, y: 145}
+      - {x: -569, y: 145}
+      - {x: -339, y: 118}
+      - {x: 381, y: 118}
+      - {x: 572, y: 199}
+      - {x: 572, y: 273}
+      - {x: 239, y: 324}
+    - - {x: -496, y: 421}
+      - {x: -499, y: 416}
+      - {x: -499, y: 377}
+      - {x: -487, y: 360}
+      - {x: -409, y: 360}
+      - {x: -223, y: 367}
+      - {x: -215, y: 377}
+      - {x: -215, y: 421}
+    - - {x: 132, y: 389}
+      - {x: 183, y: 388}
+      - {x: 403, y: 388}
+      - {x: 412, y: 394}
+      - {x: 412, y: 443}
+      - {x: 411, y: 447}
+      - {x: 128, y: 447}
+      - {x: 128, y: 406}
+    physicsShape: []
+    bones: []
+    spriteID: 9cdced0a0c6b9164da4e1fdc48489a61
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

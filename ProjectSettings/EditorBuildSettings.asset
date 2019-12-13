@@ -11,4 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BigDungeon.unity
     guid: bbcf6db05689ba34fbac1b634b045f1f
+  - enabled: 1
+    path: Assets/Scenes/Act1Scene2Part1.unity
+    guid: 7c7034a6f5064764baf879838d11ce28
+  - enabled: 1
+    path: Assets/Scenes/Act1Scene2Part2.unity
+    guid: 6cd3ec1568a8e454eb44e857f21ac27b
+  - enabled: 1
+    path: Assets/Scenes/Act1Scene3.unity
+    guid: 8ece4add54de93746b8eedd37c58f908
+  - enabled: 1
+    path: Assets/Scenes/Act1Scene1.unity
+    guid: 4e233402a62e8974ca2e84a793c527c0
+  - enabled: 1
+    path: Assets/Scenes/ControlsPage.unity
+    guid: ea762e5e2a6d8584f812ece16e7d9f74
   m_configObjects: {}

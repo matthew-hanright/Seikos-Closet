@@ -52,6 +52,7 @@ public class SavePointController : MonoBehaviour
 
     public void Save()
     {
+        transform.localScale = new Vector3(0.1f,0.1f,0);
         PlayerController player = (PlayerController)FindObjectOfType(typeof(PlayerController));
         Save newSave = new Save();
         newSave.currentRoom = SceneManager.GetActiveScene().name;
@@ -72,5 +73,6 @@ public class SavePointController : MonoBehaviour
             saveFile.WriteLine(value);
         }
         saveFile.Close();
+        transform.localScale = new Vector3(1, 1, 0);
     }
 }

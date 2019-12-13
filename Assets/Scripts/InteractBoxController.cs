@@ -38,9 +38,9 @@ public class InteractBoxController : MonoBehaviour
         //If can interact, is not currently interacting with anything, and the object can be interacted with
         if (canInteract && GetComponentInParent<PlayerController>().canControl && other.GetComponent<DialogueTrigger>())
         {
-            if (Input.GetAxis("Interact") > 0.5) 
+            //if (Input.GetAxis("Interact") > 0.5) 
             {
-                Debug.Log("Checkpoint 1");
+                Debug.Log("Checkpoint 1" + other);
                 //Call the object's dialogue, and the player can no longer interact, i.e. begin another dialogue
                 other.GetComponent<DialogueTrigger>().conditionMet = true;
                 //other.GetComponent<DialogueTrigger>().TriggerDialogue();
