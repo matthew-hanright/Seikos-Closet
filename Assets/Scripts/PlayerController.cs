@@ -486,7 +486,7 @@ public class PlayerController : MonoBehaviour
             if(Time.time > power1StartTime + power1Cooldown)
             {
                 power1Available = true;
-                power1Icon.SetActive(true);
+                //power1Icon.SetActive(true);
             }
 
             //Power 2

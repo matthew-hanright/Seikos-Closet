@@ -13,6 +13,10 @@ public class ChatterAI : ParentEnemy
 
     public GameObject activeVision;
 
+    //public AudioSource defaultSound = null;
+    public AudioSource attacked = null;
+    public AudioSource death = null;
+
     public Sprite[] moving;
     private float frameStartTime;
     private float minFrameRate = 0.08f;

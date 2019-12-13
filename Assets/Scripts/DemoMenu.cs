@@ -22,7 +22,7 @@ public class DemoMenu : MonoBehaviour
 
     public void beginGame()
     {
-        SceneManager.LoadScene("BigDungeon");
+        SceneManager.LoadScene("Act1Scene1");
     }
 
     public void loadSave()
@@ -37,6 +37,17 @@ public class DemoMenu : MonoBehaviour
 
     public void close()
     {
+        Debug.Log("Closing");
         Application.Quit();
+    }
+
+    public void returnToMain()
+    {
+        SceneManager.LoadScene("DemoMenu");
+    }
+
+    public void controlsPage()
+    {
+        SceneManager.LoadScene("ControlsPage");
     }
 }

@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4AD29DC9-9426-CE4C-1A9B-315B9FF26625}</ProjectGuid>
+    <ProjectGuid>{DAA63FC7-CD4F-F1D5-0103-19ABE660F937}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -86,42 +86,54 @@
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\InteractBoxController.cs" />
     <Compile Include="Assets\Scripts\Load.cs" />
+    <Compile Include="Assets\Scripts\MothersWords.cs" />
     <Compile Include="Assets\Scripts\ParentEnemy.cs" />
     <Compile Include="Assets\Scripts\PlatformMove.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerGrounding.cs" />
+    <Compile Include="Assets\Scripts\PlayerToggle.cs" />
     <Compile Include="Assets\Scripts\Save.cs" />
     <Compile Include="Assets\Scripts\SavePointController.cs" />
+    <Compile Include="Assets\Scripts\SceneChange.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Act1Scene1.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Test\Dialogue.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Test\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Test\DialogueTrigger.cs" />
+    <Compile Include="Assets\Scripts\Story Scripts\Test\StoryChain.cs" />
     <Compile Include="Assets\Scripts\Story Scripts\Test\StoryDriver.cs" />
     <Compile Include="Assets\Scripts\UIDungeonScript.cs" />
     <Compile Include="Assets\Scripts\Win.cs" />
+    <None Include="Assets\Music\Seiko Sound Files\Level1.band\projectData.xml" />
     <None Include="Assets\Fonts\Noah\OFL.txt" />
+    <None Include="Assets\Music\Seiko Sound Files\Dancing On My Guitar Strings - Seiko.band\projectData.xml" />
+    <None Include="Assets\Music\Seiko Sound Files\Gminor3.band\projectData.xml" />
     <None Include="Assets\Fonts\Liu_Jian_Mao_Cao\OFL.txt" />
     <None Include="Assets\Fonts\Seiko(Maybe)\OFL.txt" />
+    <None Include="Assets\Music\Seiko Sound Files\Phone Ringing - Seiko.band\projectData.xml" />
     <None Include="Assets\Fonts\Mansalva\OFL.txt" />
+    <None Include="Assets\Music\Seiko Sound Files\Phone Ring Text - Seiko.band\projectData.xml" />
     <None Include="Assets\Fonts\Caveat\OFL.txt" />
+    <None Include="Assets\Music\Seiko Sound Files\Gminor4.band\projectData.xml" />
+    <None Include="Assets\Music\Seiko Sound Files\GMinor2.band\projectData.xml" />
     <None Include="Assets\Fonts\Cassandra\OFL.txt" />
     <None Include="Assets\Fonts\Rajdhani\OFL.txt" />
+    <None Include="Assets\Music\Seiko Sound Files\Gminor1.band\projectData.xml" />
     <None Include="Assets\Fonts\Rachel\OFL.txt" />
     <None Include="Assets\Fonts\Seiko\OFL.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -323,15 +335,6 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/grnpn/Documents/Unity Projects/Seikos Closet/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.8f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
