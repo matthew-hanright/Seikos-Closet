@@ -17,6 +17,7 @@ public class Attack1Script : MonoBehaviour
         else if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<ParentEnemy>().health -= damage * damageMultiplier;
+            collision.gameObject.GetComponent<ParentEnemy>().onHit();
             Object.Destroy(this.gameObject);
         }
         else if (collision.gameObject.tag == "Boss 1")

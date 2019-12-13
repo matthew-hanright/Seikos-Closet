@@ -15,18 +15,16 @@ public class GhostBoiScript : ParentEnemy
 
     public bool seesPlayer = false;
     public GameObject target;
-    private float speed = 10.0f;
+    private float speed = 15.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
         spriteRenderer = GetComponent<SpriteRenderer>();
         frameStartTime = Time.time;
         frameRate = Random.Range(frameRateMin, frameRateMax);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         //update currentframe

@@ -50,6 +50,7 @@ public class AttackMeleeController : MonoBehaviour
             if (!alreadyHit)
             {
                 collision.gameObject.GetComponent<ParentEnemy>().health -= damage * damageMultiplier;
+                collision.gameObject.GetComponent<ParentEnemy>().onHit();
                 ignoreEnemy.Add(collision.gameObject.GetInstanceID());
             }
         }

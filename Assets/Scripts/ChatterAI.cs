@@ -40,8 +40,9 @@ public class ChatterAI : ParentEnemy
         if (health <= 0)
         {
             Destroy(activeVision);
-            Destroy(this.gameObject);
         }
+
+        GetComponentInParent<ParentEnemy>().Update();
     }
 
     private void FixedUpdate()
