@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1048531233582645654
+--- !u!1 &1108235970814449408
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5316071615351320683}
-  - component: {fileID: 2976962667797394779}
-  - component: {fileID: 8575906035104637220}
+  - component: {fileID: 4438501899730902851}
+  - component: {fileID: 8071014748132633331}
+  - component: {fileID: 4011695984545987460}
   m_Layer: 0
-  m_Name: Vision
+  m_Name: CollisionCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5316071615351320683
+--- !u!4 &4438501899730902851
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048531233582645654}
+  m_GameObject: {fileID: 1108235970814449408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 1893154262596438509}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &2976962667797394779
+--- !u!58 &8071014748132633331
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048531233582645654}
+  m_GameObject: {fileID: 1108235970814449408}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -47,20 +47,19 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4
---- !u!114 &8575906035104637220
+  m_Radius: 22.74
+--- !u!114 &4011695984545987460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048531233582645654}
+  m_GameObject: {fileID: 1108235970814449408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf6bd7df8fc10b4b82197acad9e45f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 813b322ba0958f84985f1be31e333c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggered: 0
 --- !u!1 &8623024975932665808
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +90,7 @@ Transform:
   m_LocalPosition: {x: 210.02, y: 80.04, z: -2.25}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
-  - {fileID: 5316071615351320683}
+  - {fileID: 4438501899730902851}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -110,8 +109,9 @@ MonoBehaviour:
   health: 30
   damage: 1
   isGrounded: 0
-  knockbackX: 300
-  knockbackY: 200
+  knockbackX: 30
+  knockbackY: 20
+  hit: 0
   ghostBoiFrames:
   - {fileID: 21300000, guid: 41828d3177dcdc4479d5c3b6e29e4e4d, type: 3}
   - {fileID: 21300002, guid: 41828d3177dcdc4479d5c3b6e29e4e4d, type: 3}
@@ -121,7 +121,8 @@ MonoBehaviour:
   - {fileID: 21300010, guid: 41828d3177dcdc4479d5c3b6e29e4e4d, type: 3}
   - {fileID: 21300012, guid: 41828d3177dcdc4479d5c3b6e29e4e4d, type: 3}
   - {fileID: 21300014, guid: 41828d3177dcdc4479d5c3b6e29e4e4d, type: 3}
-  seesPlayer: 0
+  onCamera: 1
+  seesPlayer: 1
   target: {fileID: 0}
 --- !u!212 &3573407910434269324
 SpriteRenderer:

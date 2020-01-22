@@ -23,12 +23,6 @@ public class PlatformMove : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         if (shouldMove)
@@ -70,17 +64,5 @@ public class PlatformMove : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(intervalX, intervalY);
         }
     }
-
-    /*private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (shouldMove && collision.tag == "Player")
-        {
-            collision.gameObject.GetComponent<Rigidbody2D>().velocity += new Vector2(
-                collision.gameObject.GetComponent<Rigidbody2D>().velocity.x - 
-                GetComponent<Rigidbody2D>().velocity.x,
-                0.0f);
-            //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(intervalX * magicForceNumber, 0.0f));
-        }
-    }*/
 
 }

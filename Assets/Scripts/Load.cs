@@ -37,7 +37,6 @@ public class Load : MonoBehaviour
     public void LoadSaveFile(string saveName)
     {
         PlayerController player = FindObjectOfType<PlayerController>();
-        print(player.name);
     }
 
     void OnEnable()

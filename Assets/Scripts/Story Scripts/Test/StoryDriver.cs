@@ -22,12 +22,10 @@ public class StoryDriver : MonoBehaviour
         {
             if (story[i].currentStory && story[i].conditionMet)
             {
-                Debug.Log("Checkpoint 1");
                 story[i].TriggerDialogue();
                 story[i].currentStory = false;
                 if (i + 1 < story.Length)
                 {
-                    Debug.Log(story[i + 1]);
                     story[i + 1].currentStory = true;
                 }
             }

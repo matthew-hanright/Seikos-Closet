@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BasicDialogue : MonoBehaviour
 {
+    //This script has been deprecated in favor of the "dialogue" story scripts 
     public PlayerController player;
     public Text DialogeBox;
     public string[] text;
@@ -12,12 +13,6 @@ public class BasicDialogue : MonoBehaviour
     private bool haveControl = false;
     private bool giveControl = false;
     private bool goNext = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //DialogeBox.gameObject.SetActive(false);
-    }
 
     // Update is called once per frame
     void Update()
@@ -47,9 +42,6 @@ public class BasicDialogue : MonoBehaviour
             }
         }
     }
-
-   
-    
     
     void UpdateText()
     {
@@ -67,7 +59,6 @@ public class BasicDialogue : MonoBehaviour
             haveControl = false;
         }
     }
-    
 
     //This function is called first, and begins the dialogue
     public void ShowText(string[] text, int startIndex)
@@ -81,7 +72,6 @@ public class BasicDialogue : MonoBehaviour
         {
             DialogeBox.gameObject.SetActive(true);
             DialogeBox.text = this.text[i];
-            //Debug.Log(this.text[i]);
         }
         else
         {

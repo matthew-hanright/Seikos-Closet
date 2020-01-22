@@ -40,7 +40,6 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue, DialogueTrigger nextLink)
     {
-        Debug.Log("Checkpoint 3");
         this.nextLink = nextLink;
         sentences = new Queue<string>();
         player.canControl = false;
@@ -67,7 +66,6 @@ public class DialogueManager : MonoBehaviour
         
         if (sentences.Count <= 0)
         {
-            Debug.Log("Checkpoint 4");
             EndDialogue();
         }
         if(sentences.Count > 0)
@@ -90,14 +88,16 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        Debug.Log("LAST CHECHPOINT");
-        if(nextLink != null)
+        if (nextLink != null)
         {
             nextLink.conditionMet = true;
         }
-        animator.SetBool("IsOpen", false);
-        haveControl = false;
-        player.canControl = true;
+        else
+        {
+            animator.SetBool("IsOpen", false);
+            haveControl = false;
+            player.canControl = true;
+        }
     }
 
 }

@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private float timeOfRegen;
 
     public Sprite[] walking;
+    public Sprite[] walkingLookUp;
     private int currentFrame = 0;
     private float walkingFrameRate = 0.12f;
     private float frameStartTime;
@@ -86,12 +87,11 @@ public class PlayerController : MonoBehaviour
         if(Time.time >= timeOfHit + invincibilityLength)
         {
             isInvincible = false;
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-            gameObject.layer = 9;
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, GetComponent<SpriteRenderer>().color.a);
         }
         else if(Time.time >= timeOfHit + invincibilityLength / 3)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, GetComponent<SpriteRenderer>().color.a);
         }
 
         if(Input.GetButtonDown("Escape") && Time.timeScale > 0)
@@ -144,7 +144,14 @@ public class PlayerController : MonoBehaviour
                     currentFrame = 0;
                 }
                 frameStartTime = Time.time;
-                GetComponent<SpriteRenderer>().sprite = walking[currentFrame];
+                if (Input.GetAxis("Look Up") > 0.1)
+                {
+                    GetComponent<SpriteRenderer>().sprite = walkingLookUp[currentFrame];
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = walking[currentFrame];
+                }
             }
         }
         else if (canControl && isAttacking)
@@ -434,8 +441,20 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            if (!isWalking && !isAttacking)
+            {
+                if (Input.GetAxis("Look Up") > 0.1)
+                {
+                    GetComponent<SpriteRenderer>().sprite = walkingLookUp[0];
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = walking[0];
+                }
+            }
+
             //Apply movement
-            if(move.x > 0 && GetComponent<Rigidbody2D>().velocity.x < move.x)
+            if (move.x > 0 && GetComponent<Rigidbody2D>().velocity.x < move.x)
             {
                 GetComponent<Rigidbody2D>().velocity += new Vector2(move.x, 0.0f);
             }
@@ -472,21 +491,23 @@ public class PlayerController : MonoBehaviour
             if(power1Available && Input.GetButtonDown("Power 1"))
             {
                 gameObject.layer = 13;
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.7f);
                 power1Available = false;
                 power1Active = true;
                 power1StartTime = Time.time;
                 power1Icon.SetActive(false);
             }
 
-            if(Time.time > power1StartTime + power1Length)
+            if((Time.time > power1StartTime + power1Length) && power1Active)
             {
                 gameObject.layer = 9;
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 power1Active = false;
             }
-            if(Time.time > power1StartTime + power1Cooldown)
+            if((Time.time > power1StartTime + power1Cooldown) && !power1Icon.activeSelf)
             {
                 power1Available = true;
-                //power1Icon.SetActive(true);
+                power1Icon.SetActive(true);
             }
 
             //Power 2
@@ -498,11 +519,11 @@ public class PlayerController : MonoBehaviour
                 power2Icon.SetActive(false);
             }
 
-            if (Time.time > power2StartTime + power2Length)
+            if ((Time.time > power2StartTime + power2Length) && power2Active)
             {
                 power2Active = false;
             }
-            if (Time.time > power2StartTime + power2Cooldown)
+            if ((Time.time > power2StartTime + power2Cooldown) && !power2Icon.activeSelf)
             {
                 power2Available = true;
                 power2Icon.SetActive(true);
@@ -538,8 +559,11 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            GetComponent<SpriteRenderer>().color = damageColor;
-            gameObject.layer = 13;
+            GetComponent<SpriteRenderer>().color = new Color(
+                damageColor.r, 
+                damageColor.g, 
+                damageColor.b, 
+                GetComponent<SpriteRenderer>().color.a);
             isInvincible = true;
             timeOfHit = Time.time;
             GetComponent<Rigidbody2D>().velocity = new Vector2(knockback.x, knockback.y);

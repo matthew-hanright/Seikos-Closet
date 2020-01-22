@@ -24,7 +24,6 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        Debug.Log("Checkpoint 2");
         conditionMet = false;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue, nextLink);
         if(anim != null)
@@ -49,7 +48,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             
             if(!anim.GetBool(command))
-            {Debug.Log(anim.GetBool(command));
+            {
                 anim.SetBool(command, true);
             }
             else if (anim.GetBool(command))

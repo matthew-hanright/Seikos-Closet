@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,21 +28,32 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        TrackingPoint = player.GetComponent<PlayerController>().GetPosition();
+        try
+        {
+            TrackingPoint = player.GetComponent<PlayerController>().GetPosition();
+        }
+        catch (Exception e)
+        {
+            TrackingPoint = player.transform.position;
+        }
         if (followPlayer)
         {
             //Player moves too far to the sides
-            if (Mathf.Round(TrackingPoint.x) < Mathf.Round(transform.position.x - XBounds))
+            if ((Mathf.Round(TrackingPoint.x) < Mathf.Round(transform.position.x - XBounds)) ||
+                (Mathf.Round(TrackingPoint.x) > Mathf.Round(transform.position.x + XBounds)))
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(
-                    (-(transform.position.x - TrackingPoint.x) / XDivisor) * xSpeedMultiplier,
-                    GetComponent<Rigidbody2D>().velocity.y);
-            }
-            else if (Mathf.Round(TrackingPoint.x) > Mathf.Round(transform.position.x + XBounds))
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(
-                    (-(transform.position.x - TrackingPoint.x) / XDivisor) * xSpeedMultiplier,
-                    GetComponent<Rigidbody2D>().velocity.y);
+                try
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(
+                        (-(transform.position.x - TrackingPoint.x) / XDivisor) * xSpeedMultiplier,
+                        GetComponent<Rigidbody2D>().velocity.y);
+                }
+                catch (Exception e)
+                {
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(
+                        (-(transform.position.x - TrackingPoint.x) / XDivisor) * xSpeedMultiplier,
+                        0);
+                }
             }
             else if (Mathf.Abs(TrackingPoint.x - transform.position.x) < radius)
             { //If the player is within the bounds, stop moving along x

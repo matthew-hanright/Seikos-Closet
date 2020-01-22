@@ -21,67 +21,6 @@ public class CameraMoveRoom : MonoBehaviour
         
     }
 
-    //Previous attempt, only kept around for possible future use
-    /*
-    //When the player enters the camera is free to move
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            camera.layer = 12;
-            camera.GetComponent<CameraController>().xSpeedMultiplier = 1f;
-            camera.GetComponent<CameraController>().ySpeedMultiplier = 1f;
-            camera.GetComponent<CameraController>().followPlayer = false;
-            camera.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        }
-    }
-
-    //The player is now in a room, so the camera must collide again
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            camera.GetComponent<CameraController>().needToChangeLayer = true;
-            camera.GetComponent<CameraController>().xSpeedMultiplier = 1f;
-            camera.GetComponent<CameraController>().ySpeedMultiplier = 1f;
-            camera.GetComponent<CameraController>().followPlayer = true;
-            if(LRUD)
-            {
-                if(collision.gameObject.transform.position.x < transform.position.x)
-                {
-                    camera.GetComponent<Rigidbody2D>().velocity = new Vector2(
-                        (leftUpPoint.transform.position.x - transferPoint.transform.position.x) * transitionMultiplier,
-                        camera.GetComponent<Rigidbody2D>().velocity.y);
-                }
-                else if(collision.gameObject.transform.position.x > transform.position.x)
-                {
-                    camera.GetComponent<Rigidbody2D>().velocity = new Vector2(
-                        (rightDownPoint.transform.position.x - transferPoint.transform.position.x) * transitionMultiplier,
-                        camera.GetComponent<Rigidbody2D>().velocity.y);
-                }
-            }
-            else
-            {
-                if(collision.gameObject.transform.position.y < transform.position.y)
-                {
-                    print("out down");
-                    camera.GetComponent<Rigidbody2D>().velocity = new Vector2(
-                        camera.GetComponent<Rigidbody2D>().velocity.x,
-                        (rightDownPoint.transform.position.y - transform.position.y) * transitionMultiplier);
-                    camera.transform.position += new Vector3(-2.0f, 0.0f, 0.0f);
-                }
-                else if(collision.gameObject.transform.position.y > transform.position.y)
-                {
-                    print("Out up");
-                    camera.GetComponent<Rigidbody2D>().velocity = new Vector2(
-                        camera.GetComponent<Rigidbody2D>().velocity.x,
-                        (leftUpPoint.transform.position.y - transform.position.y) * transitionMultiplier);
-                    camera.transform.position += new Vector3(2.0f, 0.0f, 0.0f);
-                }
-            }
-        }
-    }*/
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")

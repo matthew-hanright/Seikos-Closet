@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DAA63FC7-CD4F-F1D5-0103-19ABE660F937}</ProjectGuid>
+    <ProjectGuid>{4AD29DC9-9426-CE4C-1A9B-315B9FF26625}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\attack2controller.cs" />
     <Compile Include="Assets\cameraBoxController.cs" />
+    <Compile Include="Assets\gbCollisionCheck.cs" />
     <Compile Include="Assets\Objects\CutsceneCharater.cs" />
     <Compile Include="Assets\Objects\InteractableParent.cs" />
     <Compile Include="Assets\Scripts\AIGrounding.cs" />
@@ -82,7 +83,6 @@
     <Compile Include="Assets\Scripts\ChatterVision.cs" />
     <Compile Include="Assets\Scripts\DemoMenu.cs" />
     <Compile Include="Assets\Scripts\EyeSpikeController.cs" />
-    <Compile Include="Assets\Scripts\GBVisionScript.cs" />
     <Compile Include="Assets\Scripts\GhostBoiScript.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\InteractBoxController.cs" />
@@ -122,21 +122,6 @@
     <None Include="Assets\Fonts\Rachel\OFL.txt" />
     <None Include="Assets\Fonts\Seiko\OFL.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
-<<<<<<< HEAD
-      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/danza/Documents/Marist/Fall 2019/GameStudio/Seiko's Closet/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-=======
       <HintPath>A:/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
@@ -150,7 +135,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>A:/Unity Projects/Seikos Closet/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
->>>>>>> 4825ea6c96f07f54cdf3d5e13fba779d4d128734
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>A:/Unity Hub/Installs/2018.4.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -351,11 +335,7 @@
       <HintPath>A:/Unity Hub/Installs/2018.4.8f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-<<<<<<< HEAD
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-=======
       <HintPath>A:/Unity Hub/Installs/2018.4.8f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
->>>>>>> 4825ea6c96f07f54cdf3d5e13fba779d4d128734
     </Reference>
     <Reference Include="netstandard">
       <HintPath>A:/Unity Hub/Installs/2018.4.8f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

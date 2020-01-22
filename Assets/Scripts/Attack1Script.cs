@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Attack1Script : MonoBehaviour
 {
+    //Attack 1 is a projectile
+
     private int damage = 10;
     public float speed = 40f;
+    //The damageMultiplier is used by the player's power which increases damage
     public int damageMultiplier = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)

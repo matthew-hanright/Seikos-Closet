@@ -13,7 +13,9 @@ public class GhostBoiScript : ParentEnemy
     private float frameRateMin = 0.1f; 
     private float frameRateMax = 0.7f;
 
-    public bool seesPlayer = false;
+    private bool onCamera = true;
+    public bool seesPlayer = true;
+    private bool closeEnough = false;
     public GameObject target;
     private float speed = 15.0f;
 
@@ -23,6 +25,7 @@ public class GhostBoiScript : ParentEnemy
         spriteRenderer = GetComponent<SpriteRenderer>();
         frameStartTime = Time.time;
         frameRate = Random.Range(frameRateMin, frameRateMax);
+        target = FindObjectOfType<PlayerController>().gameObject;
     }
 
     void FixedUpdate()
@@ -37,7 +40,7 @@ public class GhostBoiScript : ParentEnemy
         }
 
         //move towards the player character
-        if (target != null && seesPlayer)
+        if (onCamera && seesPlayer && !closeEnough)
         {
             Vector2 posx = transform.position;
             transform.position = Vector2.MoveTowards(posx, target.transform.position, speed * Time.deltaTime);
@@ -45,6 +48,38 @@ public class GhostBoiScript : ParentEnemy
                 spriteRenderer.flipX = true;
             else
                 spriteRenderer.flipX = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            closeEnough = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            closeEnough = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "MainCamera")
+        {
+            onCamera = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "MainCamera")
+        {
+            onCamera = false;
         }
     }
 }

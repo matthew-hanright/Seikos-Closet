@@ -37,7 +37,6 @@ public class DemoMenu : MonoBehaviour
 
     public void close()
     {
-        Debug.Log("Closing");
         Application.Quit();
     }
 
